@@ -9,18 +9,17 @@ const Footer = () => {
   const footerLinks = [
     {
       title: 'Retailer',
-      items: ['Hotspot', 'MiniSites', 'INpages', 'Flix AR'],
+      items: ["Curry's", 'Darty fr', 'John Lewis & Partners', 'Harvey Norman', "Media Market"],
     },
     {
       title: 'Brand',
       items: [
-        'Hotspot',
-        'MiniSites',
-        'INpages',
-        'Flix AR',
-        'Flix A+',
-        'Traffic Source',
-        'Comparision Tables',
+        'Samsung',
+        'Intel',
+        'LG',
+        'Sony',
+        'Phillips',
+        'dyson'
       ],
     },
     {
