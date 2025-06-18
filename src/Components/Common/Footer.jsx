@@ -37,7 +37,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full bg-[#2d2d2d] py-12 px-4 sm:px-8 lg:px-12">
+    <footer className="w-full bg-black py-12 px-4 sm:px-8 lg:px-12">
       {/* Logo and Links Section - Responsive Stacking */}
       <div className="flex flex-col md:flex-row flex-wrap justify-between gap-8 max-w-7xl mx-auto">
         {/* Logo - Centered on mobile, left on desktop */}
@@ -56,7 +56,7 @@ const Footer = () => {
                 {section.items.map((item, i) => (
                   <li
                     key={i}
-                    className="text-white text-[17px] font-medium hover:text-gray-400 transition-all"
+                    className="text-white text-[17px] font-medium hover:text-[#41E886] hover:translate-x-1 transition-all"
                   >
                     {item}
                   </li>

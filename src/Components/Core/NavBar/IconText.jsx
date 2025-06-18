@@ -3,11 +3,11 @@ import React from 'react'
 // IconText.jsx
 const IconText = ({ Icon, textCap, textSmall, mobile }) => {
     return (
-        <div className={`flex items-center ${mobile ? 'gap-2' : 'gap-3'}`}>
+        <div className={`flex items-center ${mobile ? 'gap-4' : 'gap-5'}`}>
             {Icon}
-            <div className={mobile ? 'text-xs' : 'text-sm'}>
-                <div className="font-semibold">{textCap}</div>
-                <div className="text-gray-600">{textSmall}</div>
+            <div className={mobile ? 'text-xl' : 'text-md'}>
+                <div className=" capitalize text-center font-semibold">{textCap}</div>
+                <div className="text-gray-300">{textSmall}</div>
             </div>
         </div>
     )

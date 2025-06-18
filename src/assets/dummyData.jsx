@@ -7,22 +7,22 @@ import { FaVideo } from "react-icons/fa";
 export const bannerNav = ["kitchen appliances","small appliances","tv & entertainment","computing","phones"]
 export const highlightBarData = [
     {
-        Icon : <HiCurrencyPound size={24} color="#515151"/>,
+        Icon : <HiCurrencyPound size={30} color="#41e886"/>,
         textPrim :"Price Promise",
         textSecondary:"always get the best price"
     },
         {
-        Icon : <FaTruck size={24} color="#515151"/>,
+        Icon : <FaTruck size={30} color="#41e886"/>,
         textPrim :"free delivery",
         textSecondary:"on 1000's of products"
     },
         {
-        Icon : <FaPiggyBank size={24} color="#515151"/>,
+        Icon : <FaPiggyBank size={30} color="#41e886"/>,
         textPrim :"flexi pay",
         textSecondary:"spread the cost with finance"
     },
         {
-        Icon : <FaVideo size={24} color="#515151"/>,
+        Icon : <FaVideo size={30} color="#41e886"/>,
         textPrim :"shop live",
         textSecondary:"video call an expert to help you shop"
     }

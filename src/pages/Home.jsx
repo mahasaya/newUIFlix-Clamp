@@ -6,7 +6,7 @@ import ShopByCategory from '../Components/Core/Home/ShopByCategory'
 const Home = () => {
   return (
     <div className='min-h-screen py-15 flex flex-col text-2xl w-full justify-center items-center'>
-      <span className=' w-full text-center leading-[24px] text-3xl md:text-4xl font-bold text-gray-900 mb-3'>Shop deals</span>
+      <span className=' w-full text-center leading-[24px] text-3xl md:text-4xl font-bold text-white mb-3'>Shop deals</span>
       <SliderContainer
         SliderData={SliderProductData}
         Card={Slider_Card}

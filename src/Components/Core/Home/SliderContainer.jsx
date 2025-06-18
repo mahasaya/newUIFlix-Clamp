@@ -79,7 +79,7 @@ const containerRef = useRef(null);
             <Card
               SliderData={SliderData}
               width={"w-[150px]"}
-              height={"h-[200px]"}
+              height={"h-[250px]"}
             />
            
           </div>
