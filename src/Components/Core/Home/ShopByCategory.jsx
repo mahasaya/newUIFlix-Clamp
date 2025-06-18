@@ -264,7 +264,7 @@ const ShopByCategory = () => {
     { 
       name: "kitchen appliances", 
       path: "/kitchen-appliances",
-      img: "/newUIFlix-Clamp/public/shopbycategpry/kitchen.jpeg",
+      img: "https://github.com/mahasaya/newUIFlix-Clamp/blob/master/public/shopbycategpry/kitchen.jpeg",
     },
     { 
       name: "small appliances", 
