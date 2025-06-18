@@ -102,3 +102,23 @@
     transform: scaleY(-1) rotate(-135deg);
   }
 }
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin; /* For Firefox */
+  }
+
+  .scrollbar-thumb-gray-400::-webkit-scrollbar-thumb {
+    background-color: #9ca3af; /* Tailwind's gray-400 */
+    border-radius: 0.75rem; /* rounded-xl */
+  }
+
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+}

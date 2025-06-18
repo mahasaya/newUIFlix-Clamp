@@ -75,7 +75,6 @@ const Products = () => {
       const secondChild = flixInpageRef.current?.children?.[1];
       if (secondChild) {
         setFlixHeight(secondChild.offsetHeight);
-        console.log(secondChild.offsetHeight)
       }
     });
 
@@ -187,7 +186,7 @@ const Products = () => {
             transition-all duration-600 ease-in-out 
             overflow-hidden
           `}
-          style={{ maxHeight: showFlixDiv ? `${flixHeight + 300}px` : "150px" }}
+          style={{ maxHeight: showFlixDiv ? `${flixHeight + 300}px` : "350px" }}
           ref={flixInpageRef}
           id="flix-Div"
         >

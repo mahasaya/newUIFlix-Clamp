@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FlixParamsModal from './flixParamsModal';
@@ -21,7 +21,8 @@ const Product_Recommendation_Card = ({SliderData,width,height}) => {
     navigate(`?${params.toString()}`,{replace:true});
   };
   return (
-    <div 
+    <>
+          <div 
         onClick={() => setIsOpen(true)} 
         className=' flex flex-col justify-between gap-2 min-h-[392px] h-[372px] w-[200px] rounded-[10px] border border-[#cdd8df] p-[24px_8px_16px] relative bg-white'
     >
@@ -42,7 +43,9 @@ const Product_Recommendation_Card = ({SliderData,width,height}) => {
             }
             
         </div>
-        {isOpen && (
+
+    </div>
+            {isOpen && (
             <FlixParamsModal 
             isOpen={isOpen}
             onClose={handleClose}
@@ -50,7 +53,8 @@ const Product_Recommendation_Card = ({SliderData,width,height}) => {
             productName={SliderData?.label || ''}
             />
         )}
-    </div>
+    </>
+
   )
 }
 

@@ -75,7 +75,7 @@ const NavBar = () => {
       <div className="flex bg-black flex-col">
         {/* Top Bar - Mobile Friendly */}
         <div className="flex flex-col gap-5 md:flex-row md:gap-0 w-full py-2.5 justify-between items-center px-4 sm:px-5">
-          <div className="flex items-center justify-between w-full md:w-auto flex-1/11">
+          <div className="flex items-center justify-between w-full mr-4 md:w-auto flex-1/8">
             <FlixLogo clickFunc={() => handleClick("/")} />
 
             {/* Mobile Menu Button */}
@@ -90,7 +90,7 @@ const NavBar = () => {
           <div
             className={`${
               mobileMenuOpen ? "flex" : "hidden"
-            } flex-1/2 justify-between md:flex flex-col md:flex-row w-full md:w-auto items-center gap-6`}
+            } flex-1/2 justify-between md:flex flex-col md:flex-row w-full md:w-auto items-center gap-4 `}
           >
             <SearchBar mobileOpen={mobileMenuOpen} />
             <div className="flex gap-8 py-3 md:py-0">
