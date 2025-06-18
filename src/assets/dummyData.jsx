@@ -14,6 +14,14 @@ import imageNine from "../../public/Sldier-Images/9.webp"
 import imageTen from "../../public/Sldier-Images/10.webp"
 import imageEleven from "../../public/Sldier-Images/11.webp"
 import imageTwelve from "../../public/Sldier-Images/12.webp"
+import productImg from "../../public/img-feature-big.jpg"
+import secProductImg from "../../public/img-product-small.jpg"
+import bannerPhoneImg from "../../public/Product-Images/phone-banner.webp"
+import bannerSecPhoneImg from "../../public/Product-Images/phone-banner-2.webp"
+import laptopPhoneImg from "../../public/Product-Images/lap-banner.webp"
+import laptopSecPhoneImg from "../../public/Product-Images/lap-banner-2.webp"
+import tvImg from "../../public/Product-Images/tv-banner.webp"
+
 
 
 export const bannerNav = ["kitchen appliances","small appliances","tv & entertainment","computing","phones"]
@@ -98,49 +106,49 @@ export const ProductRecommendation=[
     {
         id:1,
         name:'Product name/model, title',
-        img:"public/img-feature-big.jpg",
+        img:productImg,
         price:"£199.00",
         save:"50.00",
     },
     {
         id:2,
         name:'Product name/model, title',
-        img:"public/img-feature-big.jpg",
+       img:productImg,
         price:"£299.00",
         save:"30.00",
     },    
     {
         id:3,
         name:'Product name/model, title',
-        img:"public/img-feature-big.jpg",
+        img:productImg,
         price:"£499.00",
         save:"40.00",
     },
     {
         id:4,
         name:'Product name/model, title',
-        img:"public/img-feature-big.jpg",
+        img:productImg,
         price:"£699.00",
         save:"50.00",
     },
     {
         id:5,
         name:'Product name/model, title',
-        img:"public/img-feature-big.jpg",
+       img:productImg,
         price:"£699.00",
         
     },
     {
         id:6,
         name:'Product name/model, title',
-        img:"public/img-feature-big.jpg",
+        img:productImg,
         price:"£699.00",
         
     },
     {
         id:7,
         name:'Product name/model, title',
-        img:"public/img-feature-big.jpg",
+        img:productImg,
         price:"£699.00",
         
     }
@@ -153,14 +161,14 @@ export const ProductDetails = [
             {
                 id:1,
                 name:"Product name/model, title",
-                img:"public/img-feature-big.jpg",
+                img:productImg,
                 emi:
                     {
                         price:"£699.00",
                         save:"50.00",
                         text:"From £28.32 per month for 36 months*",
                         offers:"Get an extra £100 when you trade-in any eligible working Products name or later and buy a New iPhone 16",
-                        banner:["/public/Product-Images/phone-banner.webp","/public/Product-Images/phone-banner-2.webp"]
+                        banner:[bannerPhoneImg,bannerSecPhoneImg]
                     }
                 ,
                 description:['iOS 18','Apple Intelligence','6.1" Super Retina HDR display','Dual 48 MP / 12 MP main cameras' , '12 MP front camera']
@@ -173,15 +181,15 @@ export const ProductDetails = [
             {
                 id:1,
                 name:'Product name/model, title ',
-                img:"public/img-feature-big.jpg",
-                secImg:"public/img-product-small.jpg",
+                img:productImg,
+                secImg:secProductImg,
                 emi:
                     {
                         price:"£499.00",
                         save:"300.00",
                         text:"From £12.32 per month for 48 months*",
                         offers:"FREE next day delivery on this product",
-                        banner:["/public/Product-Images/lap-banner.webp","/public/Product-Images/lap-banner-2.webp"]
+                        banner:[laptopPhoneImg,laptopSecPhoneImg ]
                     }
                 ,
                 description:['Windows 11','Intel® Evo™ platform','Intel® Core™ i5-13500H Processor','RAM:8 GB / Storage: 512 GB SSD' , '2.2K screen']
@@ -194,15 +202,15 @@ export const ProductDetails = [
             {
                 id:1,
                 name:'Product name/model, title',
-                img:"public/img-feature-big.jpg",
-                secImg:"public/img-product-small.jpg",
+                img:productImg,
+                secImg:secProductImg,
                 emi:
                     {
                         price:"£1,079.00",
                         save:"300.00",
                         text:"From £43.37 per month for 36 months*",
                         offers:"Get £50 off the LG US20A 2.0 Compact Sound Bar when bought with any TV. Use code US20A50.",
-                        banner:["/public/Product-Images/tv-banner.webp"]
+                        banner:[tvImg]
                     }
                 ,
                 description:['Advanced OLED α9 AI processor with AI Super Upscaling','LG SELF-LIT OLED evo for extraordinary detail and contrast','HDMI 2.1 x 4','5 year guarantee' , 'LG’s webOS gives you easy access to all your must-have apps']

@@ -26,7 +26,7 @@ const Product_Recommendation_Card = ({SliderData,width,height}) => {
         className=' flex flex-col justify-between gap-2 min-h-[392px] h-[372px] w-[200px] rounded-[10px] border border-[#cdd8df] p-[24px_8px_16px] relative bg-white'
     >
         <div className=''>
-            <img src={`/${SliderData?.img}`}/>
+            <img src={`${SliderData?.img}`}/>
         </div>
         
         <span className='px-1'>

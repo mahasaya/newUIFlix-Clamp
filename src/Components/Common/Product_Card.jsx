@@ -20,7 +20,7 @@ const Product_Card = ({tag,details}) => {
             {/* IMAGE */}
         <div className="w-full h-auto flex items-center flix-hs-locator">
             <img
-                src={`/${details?.img}`}
+                src={`${details?.img}`}
                 alt="Product"
                 className="max-w-full h-auto object-contain"
             />
