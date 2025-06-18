@@ -264,27 +264,27 @@ const ShopByCategory = () => {
     { 
       name: "kitchen appliances", 
       path: "/kitchen-appliances",
-      img: "public/shopbycategpry/kitchen.jpeg",
+      img: "/newUIFlix-Clamp/public/shopbycategpry/kitchen.jpeg",
     },
     { 
       name: "small appliances", 
       path: "/small-appliances",
-      img: "public/shopbycategpry/others.jfif",
+      img: "/newUIFlix-Clamp/public/shopbycategpry/others.jfif",
     },
     { 
       name: "tv & entertainment", 
       path: "/tv-&-entertainment",
-      img: "public/shopbycategpry/tv.jfif",
+      img: "/newUIFlix-Clamp/public/shopbycategpry/tv.jfif",
     },
     { 
       name: "computing", 
       path: "/computing",
-      img: "public/shopbycategpry/laptop.jfif",
+      img: "/newUIFlix-Clamp/public/shopbycategpry/laptop.jfif",
     },
     { 
       name: "phones", 
       path: "/phones",
-      img: "public/shopbycategpry/phone.jfif",
+      img: "/newUIFlix-Clamp/public/shopbycategpry/phone.jfif",
     }
   ];
 
