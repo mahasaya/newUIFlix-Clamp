@@ -11,12 +11,28 @@ const store = configureStore({
   reducer: rootReducer
 });
 
+function RedirectHandler() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect');
+
+    if (redirect) {
+      navigate(redirect, { replace: true });
+    }
+  }, []);
+
+  return null;
+}
 createRoot(document.getElementById('root')).render(
 
     <Provider store={store}>
-      <BrowserRouter basename="/newUIFlix-Clamp">
-        <App />
-      </BrowserRouter>
+      <RedirectHandler>
+        <BrowserRouter basename="/newUIFlix-Clamp">
+          <App />
+        </BrowserRouter>
+      </RedirectHandler>
     </Provider>
 
 )

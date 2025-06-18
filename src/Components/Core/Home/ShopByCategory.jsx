@@ -312,7 +312,7 @@ const ShopByCategory = () => {
             <Link 
               to={category.path}
               key={index}
-              className="group relative block overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200"
+              className="group flex justify-between flex-col relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200"
               onMouseEnter={() => setHoveredCategory(index)}
               onMouseLeave={() => setHoveredCategory(null)}
             >
