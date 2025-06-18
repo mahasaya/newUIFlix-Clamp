@@ -1,7 +1,11 @@
-// // src/components/Core/Home/ShopByCategory.jsx
+// // // src/components/Core/Home/ShopByCategory.jsx
 // import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
-
+// import kitchenImg from "../../../../public/shopbycategpry/kitchen.jpeg"
+// import smallImg from "../../../../public/shopbycategpry/others.jfif"
+// import tvImg from "../../../../public/shopbycategpry/tv.jfif"
+// import laptopImg from "../../../../public/shopbycategpry/laptop.jfif"
+// import phoneImg from "../../../../public/shopbycategpry/phone.jfif"
 // const ShopByCategory = () => {
 //   const [hoveredCategory, setHoveredCategory] = useState(null);
   
@@ -9,32 +13,27 @@
 //     { 
 //       name: "kitchen appliances", 
 //       path: "/kitchen-appliances",
-//       img: "/public/shopbycategpry/kitchen.jpeg",
-//       color: "from-orange-400 to-orange-600"
+//       img: kitchenImg,
 //     },
 //     { 
 //       name: "small appliances", 
 //       path: "/small-appliances",
-//       img: "/public/shopbycategpry/others.jfif",
-//       color: "from-purple-400 to-purple-600"
+//       img: smallImg,
 //     },
 //     { 
 //       name: "tv & entertainment", 
 //       path: "/tv-&-entertainment",
-//       img: "/public/shopbycategpry/tv.jfif",
-//       color: "from-blue-400 to-blue-600"
+//       img: tvImg,
 //     },
 //     { 
 //       name: "computing", 
 //       path: "/computing",
-//       img: "/public/shopbycategpry/laptop.jfif",
-//       color: "from-indigo-400 to-indigo-600"
+//       img: laptopImg,
 //     },
 //     { 
 //       name: "phones", 
 //       path: "/phones",
-//       img: "/public/shopbycategpry/phone.jfif",
-//       color: "from-cyan-400 to-cyan-600"
+//       img: phoneImg,
 //     }
 //   ];
 
@@ -253,7 +252,8 @@
 // export default ShopByCategory;
 
 
-// src/components/Core/Home/ShopByCategory.jsx
+//3rd UI
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import kitchenImg from "../../../../public/shopbycategpry/kitchen.jpeg"

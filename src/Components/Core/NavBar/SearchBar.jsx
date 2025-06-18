@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import { CiSearch } from "react-icons/ci";
 const SearchBar = () => {
     const [searchInput , setSearchInput] = useState("")
-    console.log(searchInput)
+    if(searchInput?.length){
+        console.log(searchInput)
+    }
+    
     return (
         <div className='min-w-[460px] flex justify-between w-[100%] sm:w-[40%] bg-[#41E886] items-center gap-5 rounded-3xl px-3'>
             <input 

@@ -8,6 +8,7 @@ import { bannerNav } from "../../assets/dummyData";
 import IconText from "../Core/NavBar/IconText";
 import { highlightBarData } from "../../assets/dummyData";
 import useChangeURL from "../Hooks/useChangeURL";
+import { Link } from "react-router-dom";
 const SLIDE_INTERVAL = 5000;
 const NavBar = () => {
   const navigate = useNavigate();
@@ -140,7 +141,7 @@ const NavBar = () => {
 
       {/* Breadcrumb */}
       <div className="w-full bg-black border-t border-b border-gray-600 py-2 flex items-center justify-start px-4 md:px-10 lg:px-20">
-        <span className="text-xs text-white hover:text-[#41E886] font-medium">{`Home ${indexes}`}</span>
+        <span className="text-xs  font-medium"><Link to="/" className="text-white hover:text-[#41E886]">Home</Link> <span className="text-white hover:text-[#41E886] capitalize">{` ${indexes}`}</span></span>
       </div>
     </>
   );
