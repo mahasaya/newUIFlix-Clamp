@@ -2,6 +2,18 @@ import { HiCurrencyPound } from "react-icons/hi2";
 import { FaTruck } from "react-icons/fa";
 import { FaPiggyBank } from "react-icons/fa";
 import { FaVideo } from "react-icons/fa";
+import imageOne from "../../public/Sldier-Images/top-cat-hp-summer-tech.webp"
+import imageTwo from "../../public/Sldier-Images/2.webp"
+import imageThree from "../../public/Sldier-Images/3.webp"
+import imageFour from "../../public/Sldier-Images/4.webp"
+import imageFive from "../../public/Sldier-Images/5.webp"
+import imageSix from "../../public/Sldier-Images/6.webp"
+import imageSeven from "../../public/Sldier-Images/7.webp"
+import imageEight from "../../public/Sldier-Images/8.webp"
+import imageNine from "../../public/Sldier-Images/9.webp"
+import imageTen from "../../public/Sldier-Images/10.webp"
+import imageEleven from "../../public/Sldier-Images/11.webp"
+import imageTwelve from "../../public/Sldier-Images/12.webp"
 
 
 export const bannerNav = ["kitchen appliances","small appliances","tv & entertainment","computing","phones"]
@@ -30,54 +42,54 @@ export const highlightBarData = [
 
 export const SliderProductData =[
     {
-        img:"public/Sldier-Images/top-cat-hp-summer-tech.webp",
+        img:imageOne,
         label : "summer tech"
     },
     {
-        img:"public/Sldier-Images/2.webp",
+        img:imageTwo,
         label : "TVs",
         tag:"tv-&-entertainment/tv"
     },
     {
-        img:"public/Sldier-Images/3.webp",
+        img:imageThree,
         label : "laptops",
         tag:"/computing/laptops"
     },    
     {
-        img:"public/Sldier-Images/4.webp",
+        img:imageFour,
         label : "mobile phones",
         tag:"phones/phones"
     },
     {
-        img:"public/Sldier-Images/5.webp",
+        img:imageFive,
         label : "washing machines"
     },
     {
-        img:"public/Sldier-Images/6.webp",
+        img:imageSix,
         label : "smart watched"
     },
     {
-        img:"public/Sldier-Images/7.webp",
+        img:imageSeven,
         label : "vaccume cleaners"
     },
     {
-        img:"public/Sldier-Images/8.webp",
+        img:imageEight,
         label : "iPads,tablet & eReaders"
     },
     {
-        img:"public/Sldier-Images/9.webp",
+        img:imageNine,
         label : "digital cameras"
     },
     {
-        img:"public/Sldier-Images/10.webp",
+        img:imageTen,
         label : "fridge freezers"
     },
     {
-        img:"public/Sldier-Images/11.webp",
+        img:imageEleven,
         label : "console gaming"
     },
     {
-        img:"public/Sldier-Images/12.webp",
+        img:imageTwelve,
         label : "headphones"
     },
 ]

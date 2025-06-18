@@ -257,6 +257,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import kitchenImg from "../../../../public/shopbycategpry/kitchen.jpeg"
+import smallImg from "../../../../public/shopbycategpry/others.jfif"
+import tvImg from "../../../../public/shopbycategpry/tv.jfif"
+import laptopImg from "../../../../public/shopbycategpry/laptop.jfif"
+import phoneImg from "../../../../public/shopbycategpry/phone.jfif"
 const ShopByCategory = () => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
   
@@ -269,22 +273,22 @@ const ShopByCategory = () => {
     { 
       name: "small appliances", 
       path: "/small-appliances",
-      img: "/newUIFlix-Clamp/public/shopbycategpry/others.jfif",
+      img: smallImg,
     },
     { 
       name: "tv & entertainment", 
       path: "/tv-&-entertainment",
-      img: "/newUIFlix-Clamp/public/shopbycategpry/tv.jfif",
+      img: tvImg,
     },
     { 
       name: "computing", 
       path: "/computing",
-      img: "/newUIFlix-Clamp/public/shopbycategpry/laptop.jfif",
+      img: laptopImg,
     },
     { 
       name: "phones", 
       path: "/phones",
-      img: "/newUIFlix-Clamp/public/shopbycategpry/phone.jfif",
+      img: phoneImg,
     }
   ];
 
