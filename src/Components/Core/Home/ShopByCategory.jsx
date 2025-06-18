@@ -256,7 +256,7 @@
 // src/components/Core/Home/ShopByCategory.jsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import kitchenImg from "../../../../public/shopbycategpry/kitchen.jpeg"
 const ShopByCategory = () => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
   
@@ -264,7 +264,7 @@ const ShopByCategory = () => {
     { 
       name: "kitchen appliances", 
       path: "/kitchen-appliances",
-      img: "https://github.com/mahasaya/newUIFlix-Clamp/blob/master/public/shopbycategpry/kitchen.jpeg",
+      img: {kitchenImg},
     },
     { 
       name: "small appliances", 
