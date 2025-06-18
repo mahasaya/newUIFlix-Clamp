@@ -88,7 +88,6 @@ const Products = () => {
       const secondChild = flixInpageRef.current.children[1];
       if (secondChild) {
         setFlixHeight(secondChild.offsetHeight);
-        console.log(secondChild.offsetHeight)
       }
     }
 
