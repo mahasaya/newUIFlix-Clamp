@@ -70,7 +70,7 @@ const containerRef = useRef(null);
       <div
         ref={containerRef}
         style={{ scrollbarWidth: "none" }}
-        className="flex flex-row overflow-scroll gap-4  w-[95%] mx-auto "
+        className="flex overflow-y-hidden flex-row overflow-scroll gap-4  w-[95%] mx-auto "
       >
         {
           

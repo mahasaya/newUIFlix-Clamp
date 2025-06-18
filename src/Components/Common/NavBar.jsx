@@ -14,8 +14,8 @@ const NavBar = () => {
   const navigate = useNavigate();
   const indexes = useChangeURL();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef(null);
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const containerRef = useRef(null);
 
   const items = [...highlightBarData];
   const totalSlides = items.length;
@@ -28,23 +28,23 @@ const NavBar = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    const slideWidth = window.innerWidth;
+  // useEffect(() => {
+  //   const container = containerRef.current;
+  //   const slideWidth = window.innerWidth;
 
     
-    container.style.transition = "transform 0.5s ease-in-out";
-    container.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  //   container.style.transition = "transform 0.5s ease-in-out";
+  //   container.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 
    
-    if (currentIndex === totalSlides) {
-      setTimeout(() => {
-        container.style.transition = "none";
-        container.style.transform = "translateX(0px)";
-        setCurrentIndex(0);
-      }, 500); 
-    }
-  }, [currentIndex, totalSlides]);
+  //   if (currentIndex === totalSlides) {
+  //     setTimeout(() => {
+  //       container.style.transition = "none";
+  //       container.style.transform = "translateX(0px)";
+  //       setCurrentIndex(0);
+  //     }, 500); 
+  //   }
+  // }, [currentIndex, totalSlides]);
 
   const handleClick = (url) => {
     navigate(url);
@@ -53,7 +53,7 @@ const NavBar = () => {
   return (
     <>
       {/* Highlight Bar */}
-      <div className="py-3 flex flex-col justify-center items-center w-full bg-[#1D1D1D] text-white">
+      {/* <div className="py-3 flex flex-col justify-center items-center w-full bg-[#1D1D1D] text-white">
         <div className="flex w-full overflow-hidden pb-2">
           <div ref={containerRef} className="flex flex-nowrap">
             {[...items, items[0]].map((data, index) => (
@@ -71,8 +71,8 @@ const NavBar = () => {
             ))}
           </div>
         </div>
-      </div>
-      <div className="flex bg-black flex-col">
+      </div> */}
+      <div className="flex pt-5 bg-black flex-col">
         {/* Top Bar - Mobile Friendly */}
         <div className="flex flex-col gap-5 md:flex-row md:gap-0 w-full py-2.5 justify-between items-center px-4 sm:px-5">
           <div className="flex items-center justify-between w-full mr-4 md:w-auto flex-1/8">
