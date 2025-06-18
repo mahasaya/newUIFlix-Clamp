@@ -264,7 +264,7 @@ const ShopByCategory = () => {
     { 
       name: "kitchen appliances", 
       path: "/kitchen-appliances",
-      img: {kitchenImg},
+      img: kitchenImg,
     },
     { 
       name: "small appliances", 
