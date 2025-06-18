@@ -30,11 +30,14 @@ function RedirectHandler() {
 createRoot(document.getElementById('root')).render(
 
     <Provider store={store}>
-      <RedirectHandler>
+      
         <BrowserRouter basename="/newUIFlix-Clamp">
+        <RedirectHandler>
           <App />
+        </RedirectHandler>
+         
         </BrowserRouter>
-      </RedirectHandler>
+      
     </Provider>
 
 )
