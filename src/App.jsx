@@ -29,7 +29,7 @@ function App() {
       <NavBar/>
 
       <Routes>
-        <Route path='/newUIFlix-Clamp' element={<Home/>}>
+        <Route path='/' element={<Home/>}>
         
           
         </Route>
