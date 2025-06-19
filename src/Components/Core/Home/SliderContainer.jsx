@@ -87,7 +87,7 @@ const SliderContainer = ({ SliderData, Card }) => {
         {SliderData.map((data, index) => (
           <div 
             key={index} 
-            className={`flex-shrink-0 ${SliderData?.length < 12 && 'min-w-[250px]'} ${getCardWidthClass()} snap-start`}
+            className={`flex-shrink-0 ${SliderData?.length < 12 ? 'min-w-[250px]':'mr-[22px]'} ${getCardWidthClass()} snap-start`}
           >
             <Card
               SliderData={data}
