@@ -33,7 +33,7 @@ const Slider_Card = ({ SliderData, width, height }) => {
         {/* Image container with glow effect */}
         <div className="relative  transform transition-transform duration-300 ">
           {/* Glow effect - only visible on hover  // top-4 -bottom-12 */}
-          <div
+          {/* <div
             className="
           absolute -inset-2 
           bg-[#41E886] 
@@ -46,7 +46,7 @@ const Slider_Card = ({ SliderData, width, height }) => {
           group-hover:opacity-90
           z-0
         "
-          />
+          /> */}
 
           {/* Image container */}
           <div className="relative mx-auto w-[60%] h-auto z-10">

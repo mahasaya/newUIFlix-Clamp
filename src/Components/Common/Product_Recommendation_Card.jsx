@@ -1,61 +1,74 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import FlixParamsModal from './flixParamsModal';
-const Product_Recommendation_Card = ({SliderData,width,height}) => {
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import FlixParamsModal from "./flixParamsModal";
+
+const Product_Recommendation_Card = ({ SliderData, width, height }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const handleClose = ()=>{
-    setIsOpen(false)
-  }
+
+  const handleClose = () => setIsOpen(false);
 
   const handleModalSubmit = (formData) => {
     const params = new URLSearchParams({
       distId: formData?.distributorID,
       iso: formData?.language,
-      live:formData?.live
+      live: formData?.live,
     });
-    
-    if (formData?.mpn) params.set('mpn', formData?.mpn);
-    if (formData?.ean) params.set('ean', formData?.ean);
-    navigate(`?${params.toString()}`,{replace:true});
+
+    if (formData?.mpn) params.set("mpn", formData?.mpn);
+    if (formData?.ean) params.set("ean", formData?.ean);
+    navigate(`?${params.toString()}`, { replace: true });
   };
+
   return (
     <>
-          <div 
-        onClick={() => setIsOpen(true)} 
-        className=' flex flex-col justify-between gap-2 min-h-[392px] h-[372px] w-[200px] rounded-[10px] border border-[#cdd8df] p-[24px_8px_16px] relative bg-white'
-    >
-        <div className=''>
-            <img src={`${SliderData?.img}`}/>
+      <div
+        onClick={() => setIsOpen(true)}
+        className={`flex flex-col justify-between cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] ${width} min-h-[350px] rounded-xl border border-[#e0e7ed] p-4 bg-white overflow-hidden`}
+      >
+        {/* Product Image */}
+        <div className="flex items-center justify-center h-[180px] mb-3">
+          <img
+            src={SliderData?.img}
+            alt={SliderData?.name}
+            className="max-h-full max-w-full object-contain"
+          />
         </div>
-        
-        <span className='px-1'>
+
+        {/* Product Info */}
+        <div className="flex flex-col gap-2 flex-grow">
+          <h3 className="font-medium text-gray-800 text-sm md:text-base line-clamp-2 h-[3em]">
             {SliderData?.name}
-        </span>
+          </h3>
 
-        <div className='flex gap-3 items-end flex-wrap justify-between px-2'>
-            <span className='text-[20px] leading-[24px] font-medium text-[#213038]'>
+          <div className="mt-auto">
+            {/* Price & Savings */}
+            <div className="flex justify-between items-center mt-2">
+              <span className="text-lg md:text-xl font-semibold text-gray-900">
                 {SliderData?.price}
-            </span>
-            {SliderData?.save &&
-                <span className='text-[14px] leading-[24px] font-medium text-[#e5006d]'>Save {SliderData?.save}</span>
-            }
-            
+              </span>
+
+              {SliderData?.save && (
+                <span className="text-xs md:text-sm font-medium text-[#e5006d] px-2 py-1 rounded-full">
+                  Save {SliderData?.save}
+                </span>
+              )}
+            </div>
+          </div>
         </div>
+      </div>
 
-    </div>
-            {isOpen && (
-            <FlixParamsModal 
-            isOpen={isOpen}
-            onClose={handleClose}
-            onSubmit={handleModalSubmit}
-            productName={SliderData?.label || ''}
-            />
-        )}
+      {/* Modal */}
+      {isOpen && (
+        <FlixParamsModal
+          isOpen={isOpen}
+          onClose={handleClose}
+          onSubmit={handleModalSubmit}
+          productName={SliderData?.label || ""}
+        />
+      )}
     </>
+  );
+};
 
-  )
-}
-
-export default Product_Recommendation_Card
+export default Product_Recommendation_Card;
