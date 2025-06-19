@@ -58,7 +58,7 @@ const Slider_Card = ({ SliderData, width, height }) => {
           </div>
         </div>
 
-        <span className="text-[16px] text-center text-gray-300  hover:text-white capitalize font-normal transition-transform duration-300 ">
+        <span className="text-[24px] md:text-[16px] lg:text-[14px] text-center text-gray-300  hover:text-white capitalize font-semibold transition-transform duration-300 ">
           {SliderData?.label}
         </span>
       </div>
