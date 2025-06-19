@@ -12,10 +12,25 @@ import TV from './pages/TV'
 import Computing from './pages/Computing'
 import Footer from './Components/Common/Footer'
 import Products from './Components/Common/Products'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
   const location = useLocation();
+  
+  function RedirectHandler() {
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect');
+
+    if (redirect) {
+      navigate(redirect, { replace: true });
+    }
+  }, []);
+
+  return null;
+}
   useEffect(() => {
     const query = location.search;
     if (!query && typeof window.flixJsCallbacks === 'object' && typeof window.flixJsCallbacks.reset === 'function') {
@@ -24,8 +39,9 @@ function App() {
 
   }, [location]);
   return (
-
-    <div className='overflow-x-hidden cursor-default min-h-screen w-full bg-black flex flex-col'>
+    <>
+ <RedirectHandler/>
+        <div className='overflow-x-hidden cursor-default min-h-screen w-full bg-black flex flex-col'>
       <NavBar/>
 
       <Routes>
@@ -47,6 +63,9 @@ function App() {
 
       <Footer/>
     </div>
+    </>
+
+
 
   )
 }

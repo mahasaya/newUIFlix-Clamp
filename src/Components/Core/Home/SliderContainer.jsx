@@ -46,7 +46,7 @@ const containerRef = useRef(null);
   return (
     <div className="flex relative w-full my-15">
       {/* Navigation Buttons */}
-      <div className="absolute cursor-pointer flex items-center justify-center w-[30px] z-50 h-[30px] top-[28%] right-12">
+      <div className="absolute cursor-pointer flex items-center justify-center w-[30px] z-50 h-[30px] top-[47%] right-5">
         <button
           aria-label="Next Course"
           onClick={() => scrollToLastSection(1)}
@@ -56,7 +56,7 @@ const containerRef = useRef(null);
         </button>
       </div>
 
-      <div className="absolute cursor-pointer flex items-center justify-center z-50 w-[30px] h-[30px] top-[30%] left-12">
+      <div className="absolute cursor-pointer flex items-center justify-center z-50 w-[30px] h-[30px] top-[47%] left-5">
         <button
           aria-label="Previous Course"
           onClick={() => scrollToLastSection(-1)}
@@ -70,7 +70,7 @@ const containerRef = useRef(null);
       <div
         ref={containerRef}
         style={{ scrollbarWidth: "none" }}
-        className="flex overflow-y-hidden flex-row overflow-scroll gap-4  w-[95%] mx-auto "
+        className="flex overflow-y-hidden flex-row overflow-scroll gap-4  w-[90%] mx-auto "
       >
         {
           
