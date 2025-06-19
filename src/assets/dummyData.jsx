@@ -51,7 +51,8 @@ export const highlightBarData = [
 export const SliderProductData =[
     {
         img:imageOne,
-        label : "summer tech"
+        label : "summer tech",
+        tag:"small-appliances/summer-tech"
     },
     {
         img:imageTwo,
@@ -61,7 +62,7 @@ export const SliderProductData =[
     {
         img:imageThree,
         label : "laptops",
-        tag:"/computing/laptops"
+        tag:"computing/laptops"
     },    
     {
         img:imageFour,
@@ -70,35 +71,43 @@ export const SliderProductData =[
     },
     {
         img:imageFive,
-        label : "washing machines"
+        label : "washing machines",
+        tag:"kitchen-appliances/washing-machines"
     },
     {
         img:imageSix,
-        label : "smart watched"
+        label : "smart watches",
+        tag:"small-appliances/smart-watches"
     },
     {
         img:imageSeven,
-        label : "vaccume cleaners"
+        label : "vaccume cleaners",
+        tag:"kitchen-appliances/vaccume-cleaners"
     },
     {
         img:imageEight,
-        label : "iPads,tablet & eReaders"
+        label : "iPads,tablet & eReaders",
+        tag:"phones/tabs"
     },
     {
         img:imageNine,
-        label : "digital cameras"
+        label : "digital cameras",
+        tag:"small-appliances/digital-cameras"
     },
     {
         img:imageTen,
-        label : "fridge freezers"
+        label : "fridge freezers",
+        tag:"kitchen-appliances/fridge-freezers"
     },
     {
         img:imageEleven,
-        label : "console gaming"
+        label : "console gaming",
+        tag:"/tv-&-entertainment/console-gaming"
     },
     {
         img:imageTwelve,
-        label : "headphones"
+        label : "headphones",
+        tag:"small-appliances/headphones"
     },
 ]
 
@@ -155,66 +164,248 @@ export const ProductRecommendation=[
 ]
 
 export const ProductDetails = [
-    {
-        tag:"phones",
-        details:[
-            {
-                id:1,
-                name:"Product name/model, title",
-                img:productImg,
-                emi:
-                    {
-                        price:"£699.00",
-                        save:"50.00",
-                        text:"From £28.32 per month for 36 months*",
-                        offers:"Get an extra £100 when you trade-in any eligible working Products name or later and buy a New iPhone 16",
-                        banner:[bannerPhoneImg,bannerSecPhoneImg]
-                    }
-                ,
-                description:['iOS 18','Apple Intelligence','6.1" Super Retina HDR display','Dual 48 MP / 12 MP main cameras' , '12 MP front camera']
-            }
-        ]
-    },
-    {
-        tag:"laptops",
-        details:[
-            {
-                id:1,
-                name:'Product name/model, title ',
-                img:productImg,
-                secImg:secProductImg,
-                emi:
-                    {
-                        price:"£499.00",
-                        save:"300.00",
-                        text:"From £12.32 per month for 48 months*",
-                        offers:"FREE next day delivery on this product",
-                        banner:[laptopPhoneImg,laptopSecPhoneImg ]
-                    }
-                ,
-                description:['Windows 11','Intel® Evo™ platform','Intel® Core™ i5-13500H Processor','RAM:8 GB / Storage: 512 GB SSD' , '2.2K screen']
-            }
-        ]
-    },
-        {
-        tag:"tv",
-        details:[
-            {
-                id:1,
-                name:'Product name/model, title',
-                img:productImg,
-                secImg:secProductImg,
-                emi:
-                    {
-                        price:"£1,079.00",
-                        save:"300.00",
-                        text:"From £43.37 per month for 36 months*",
-                        offers:"Get £50 off the LG US20A 2.0 Compact Sound Bar when bought with any TV. Use code US20A50.",
-                        banner:[tvImg]
-                    }
-                ,
-                description:['Advanced OLED α9 AI processor with AI Super Upscaling','LG SELF-LIT OLED evo for extraordinary detail and contrast','HDMI 2.1 x 4','5 year guarantee' , 'LG’s webOS gives you easy access to all your must-have apps']
-            }
-        ]
-    }
-]
+  {
+    tag: "phones",
+    details: [
+      {
+        id: 1,
+        name: "iPhone 16 Pro",
+        img: productImg,
+        emi: {
+          price: "£699.00",
+          save: "50.00",
+          text: "From £28.32 per month for 36 months*",
+          offers:
+            "Get an extra £100 when you trade-in any eligible working iPhone model",
+          banner: [bannerPhoneImg, bannerSecPhoneImg],
+        },
+        description: [
+          "iOS 18",
+          "Apple Intelligence",
+          '6.1" Super Retina HDR display',
+          "Dual 48 MP / 12 MP main cameras",
+          "12 MP front camera",
+        ],
+      },
+    ],
+  },
+  {
+    tag: "laptops",
+    details: [
+      {
+        id: 1,
+        name: "Dell XPS 13",
+        img: productImg,
+        secImg: secProductImg,
+        emi: {
+          price: "£499.00",
+          save: "300.00",
+          text: "From £12.32 per month for 48 months*",
+          offers: "FREE next day delivery on this product",
+          banner: [laptopPhoneImg, laptopSecPhoneImg],
+        },
+        description: [
+          "Windows 11",
+          "Intel® Evo™ platform",
+          "Intel® Core™ i5-13500H Processor",
+          "RAM:8 GB / Storage: 512 GB SSD",
+          "2.2K screen",
+        ],
+      },
+    ],
+  },
+  {
+    tag: "tv",
+    details: [
+      {
+        id: 1,
+        name: "LG OLED C3",
+        img: productImg,
+        secImg: secProductImg,
+        emi: {
+          price: "£1,079.00",
+          save: "300.00",
+          text: "From £43.37 per month for 36 months*",
+          offers:
+            "Get £50 off the LG US20A 2.0 Compact Sound Bar when bought with any TV. Use code US20A50.",
+          banner: [tvImg],
+        },
+        description: [
+          "Advanced OLED α9 AI processor with AI Super Upscaling",
+          "LG SELF-LIT OLED evo",
+          "HDMI 2.1 x 4",
+          "5 year guarantee",
+          "LG’s webOS with top streaming apps",
+        ],
+      },
+    ],
+  },
+  {
+    tag: "summer-tech",
+    details: [
+      {
+        id: 1,
+        name: "Portable Air Cooler X200",
+        img: productImg,
+        emi: {
+          price: "£149.00",
+          save: "20.00",
+          text: "From £6.21 per month for 24 months*",
+          offers: "Perfect for beating the summer heat",
+          banner: [bannerPhoneImg, bannerSecPhoneImg],
+        },
+        description: [
+          "3-speed cooling",
+          "Water tank: 4.5L",
+          "Remote control included",
+          "Energy efficient design",
+          "Portable and lightweight",
+        ],
+      },
+    ],
+  },
+  {
+    tag: "washing-machines",
+    details: [
+      {
+        id: 1,
+        name: "Samsung EcoBubble 9kg",
+        img: productImg,
+        emi: {
+          price: "£429.00",
+          save: "70.00",
+          text: "From £17.87 per month for 24 months*",
+          offers: "Free installation & recycling",
+          banner: [bannerPhoneImg, bannerSecPhoneImg],
+        },
+        description: [
+          "9kg capacity",
+          "Digital Inverter Motor",
+          "15-minute quick wash",
+          "EcoBubble™ technology",
+          "SmartThings app compatible",
+        ],
+      },
+    ],
+  },
+  {
+    tag: "smart-watches",
+    details: [
+      {
+        id: 1,
+        name: "Galaxy Watch 6",
+        img: productImg,
+        emi: {
+          price: "£249.00",
+          save: "30.00",
+          text: "From £10.37 per month for 24 months*",
+          offers: "Free strap with purchase",
+          banner: [bannerPhoneImg, bannerSecPhoneImg],
+        },
+        description: [
+          "Heart rate & sleep tracking",
+          "GPS & fitness features",
+          "1.4-inch AMOLED display",
+          "Bluetooth + LTE",
+          "Water resistant",
+        ],
+      },
+    ],
+  },
+  {
+    tag: "vaccume-cleaners",
+    details: [
+      {
+        id: 1,
+        name: "Dyson V15 Detect",
+        img: productImg,
+        emi: {
+          price: "£599.00",
+          save: "100.00",
+          text: "From £24.95 per month for 24 months*",
+          offers: "Comes with 3-year warranty",
+          banner: [bannerPhoneImg, bannerSecPhoneImg],
+        },
+        description: [
+          "Laser reveals microscopic dust",
+          "Run time: 60 mins",
+          "Advanced filtration",
+          "Digital display",
+          "Powerful suction",
+        ],
+      },
+    ],
+  },
+  {
+    tag: "fridge-freezers",
+    details: [
+      {
+        id: 1,
+        name: "LG InstaView Door-in-Door",
+        img: productImg,
+        emi: {
+          price: "£1,299.00",
+          save: "200.00",
+          text: "From £54.12 per month for 24 months*",
+          offers: "Free delivery & old appliance removal",
+          banner: [bannerPhoneImg, bannerSecPhoneImg],
+        },
+        description: [
+          "Capacity: 635L",
+          "DoorCooling+ & LINEAR Cooling™",
+          "Smart Diagnosis™",
+          "Inverter Linear Compressor",
+          "Frost-free technology",
+        ],
+      },
+    ],
+  },
+  {
+    tag: "console-gaming",
+    details: [
+      {
+        id: 1,
+        name: "PlayStation 5",
+        img: productImg,
+        emi: {
+          price: "£479.00",
+          save: "20.00",
+          text: "From £19.95 per month for 24 months*",
+          offers: "Includes free game bundle",
+          banner: [bannerPhoneImg, bannerSecPhoneImg],
+        },
+        description: [
+          "825GB SSD",
+          "4K gaming support",
+          "DualSense Wireless Controller",
+          "Ray tracing technology",
+          "Haptic feedback & adaptive triggers",
+        ],
+      },
+    ],
+  },
+  {
+    tag: "headphones",
+    details: [
+      {
+        id: 1,
+        name: "Sony WH-1000XM5",
+        img: productImg,
+        emi: {
+          price: "£349.00",
+          save: "50.00",
+          text: "From £14.54 per month for 24 months*",
+          offers: "Noise Cancelling King - Free case included",
+          banner: [bannerPhoneImg, bannerSecPhoneImg],
+        },
+        description: [
+          "Industry-leading noise cancellation",
+          "Up to 30 hours battery life",
+          "Multipoint connection",
+          "Speak-to-Chat feature",
+          "Lightweight design",
+        ],
+      },
+    ],
+  },
+];
