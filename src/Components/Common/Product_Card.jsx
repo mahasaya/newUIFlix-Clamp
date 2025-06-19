@@ -29,15 +29,15 @@ const Product_Card = ({tag,details}) => {
         </div>
 
         {/* DETAILS-CONTAINER */}
-        <div className='flex flex-col justify-center gap-5'>
+        <div className='flex flex-col justify-center gap-3 md:gap-5'>
 
-            <span className='text-[20px] leading-[24px] font-medium text-[#213038]'>
+            <span className='text-[20px] leading-5 md:leading-[24px] font-medium text-[#213038]'>
                 {details?.name}
             </span>
 
-            <ul className='list-disc ml-5'>
+            <ul className='list-disc ml-3 md:ml-5'>
                 {details?.description.map((des,index)=>(
-                    <li className='text-[14px] leading-[21px] text-[#213038] mt-2.5' key={index}>{des}</li>
+                    <li className='text-[14px] leading-4 md:leading-[21px] text-[#213038] mt-2.5' key={index}>{des}</li>
                 ))}
             </ul>
             <div className='p-2 rounded border border-[#cdd8df] cursor-pointer flex items-start gap-1.5'>
@@ -49,10 +49,10 @@ const Product_Card = ({tag,details}) => {
             </div>
             <div className='flex flex-col gap-1'>
                 <div className='flex gap-10 items-end'>
-                    <span className='text-[20px] leading-[24px] font-medium text-[#213038]'>
+                    <span className='text-[20px] leading-5 md:leading-[24px] font-medium text-[#213038]'>
                         {details?.emi?.price}
                     </span>
-                    <span className='text-[14px] leading-[24px] font-medium text-[#e5006d]'>Save {details?.emi?.save}</span>
+                    <span className='text-[14px] leading-5 md:leading-[24px] font-medium text-[#e5006d]'>Save {details?.emi?.save}</span>
                 </div>
                 <span> {details?.emi?.text}</span>
                 <div className='flex gap-2 p-2 flex-col w-[40%] md:w-[40%] h-auto'>
@@ -73,7 +73,7 @@ const Product_Card = ({tag,details}) => {
                 </div>
             </div>
 
-            <div className='flex flex-col gap-6'>
+            <div className='flex flex-col gap-4 md:gap-6'>
                <CTAButtons 
                 text={"Add to basket"}
                 outline={true}

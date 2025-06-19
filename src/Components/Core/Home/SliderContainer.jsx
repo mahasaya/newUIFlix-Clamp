@@ -6,7 +6,6 @@ const SliderContainer = ({ SliderData, Card }) => {
   const containerRef = useRef(null);
   const [scrollAmount, setScrollAmount] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-console.log(SliderData)
   // Update window width on resize
   useEffect(() => {
     const handleResize = () => {

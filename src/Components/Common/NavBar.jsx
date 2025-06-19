@@ -9,6 +9,7 @@ import IconText from "../Core/NavBar/IconText";
 import { highlightBarData } from "../../assets/dummyData";
 import useChangeURL from "../Hooks/useChangeURL";
 import { Link } from "react-router-dom";
+import { IoClose } from "react-icons/io5";
 // const SLIDE_INTERVAL = 5000;
 const NavBar = () => {
   const navigate = useNavigate();
@@ -79,12 +80,23 @@ const NavBar = () => {
             <FlixLogo clickFunc={() => handleClick("/")} />
 
             {/* Mobile Menu Button */}
+            {
+              mobileMenuOpen ? 
+              <button
+                className="md:hidden text-white text-2xl"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <IoClose color="white" size={24}/>
+              </button>
+               :
             <button
               className="md:hidden text-white text-2xl"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => setMobileMenuOpen(true)}
             >
               <BsList />
             </button>
+            }
+
           </div>
 
           <div
