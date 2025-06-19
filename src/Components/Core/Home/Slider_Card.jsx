@@ -62,7 +62,7 @@ const Slider_Card = ({ SliderData, width, height }) => {
           {SliderData?.label}
         </span>
       </div>
-              {isOpen && (
+          {isOpen && (
           <FlixParamsModal
             isOpen={isOpen}
             onClose={handleClose}
