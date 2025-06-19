@@ -6,7 +6,7 @@ const SliderContainer = ({ SliderData, Card }) => {
   const containerRef = useRef(null);
   const [scrollAmount, setScrollAmount] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
+console.log(SliderData)
   // Update window width on resize
   useEffect(() => {
     const handleResize = () => {
@@ -52,7 +52,7 @@ const SliderContainer = ({ SliderData, Card }) => {
   const getCardWidthClass = () => {
     if (windowWidth < 640) return 'w-[90vw]';     // Mobile: 1 card
     if (windowWidth < 768) return 'w-[45vw]';     // Small tablet: 2 cards
-    if (windowWidth < 1024) return 'w-[10vw]';    // Tablet: 3 cards
+    if (windowWidth < 1024) return 'w-[30vw]';    // Tablet: 3 cards
     return 'w-[12vw]';                           // Desktop: 4+ cards
   };
 
@@ -88,7 +88,7 @@ const SliderContainer = ({ SliderData, Card }) => {
         {SliderData.map((data, index) => (
           <div 
             key={index} 
-            className={`flex-shrink-0 ${getCardWidthClass()} snap-start`}
+            className={`flex-shrink-0 ${SliderData?.length < 12 && 'min-w-[250px]'} ${getCardWidthClass()} snap-start`}
           >
             <Card
               SliderData={data}
