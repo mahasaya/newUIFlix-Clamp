@@ -9,7 +9,7 @@ import IconText from "../Core/NavBar/IconText";
 import { highlightBarData } from "../../assets/dummyData";
 import useChangeURL from "../Hooks/useChangeURL";
 import { Link } from "react-router-dom";
-const SLIDE_INTERVAL = 5000;
+// const SLIDE_INTERVAL = 5000;
 const NavBar = () => {
   const navigate = useNavigate();
   const indexes = useChangeURL();
@@ -20,13 +20,13 @@ const NavBar = () => {
   const items = [...highlightBarData];
   const totalSlides = items.length;
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => prev + 1);
-    }, SLIDE_INTERVAL);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentIndex((prev) => prev + 1);
+  //   }, SLIDE_INTERVAL);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   // useEffect(() => {
   //   const container = containerRef.current;
