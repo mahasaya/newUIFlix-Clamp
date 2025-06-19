@@ -76,7 +76,7 @@ const NavBar = () => {
       <div className="flex pt-5 bg-black flex-col">
         {/* Top Bar - Mobile Friendly */}
         <div className="flex flex-col gap-5 md:flex-row md:gap-0 w-full py-2.5 justify-between items-center px-4 sm:px-5">
-          <div className="flex items-center justify-between w-full mr-4 md:w-auto flex-1/8">
+          <div className="flex items-center justify-between w-full mr-4 md:w-auto flex-1/6">
             <FlixLogo clickFunc={() => handleClick("/")} />
 
             {/* Mobile Menu Button */}
