@@ -52,8 +52,8 @@ const SliderContainer = ({ SliderData, Card }) => {
   const getCardWidthClass = () => {
     if (windowWidth < 640) return 'w-[90vw]';     // Mobile: 1 card
     if (windowWidth < 768) return 'w-[45vw]';     // Small tablet: 2 cards
-    if (windowWidth < 1024) return 'w-[30vw]';    // Tablet: 3 cards
-    return 'w-[22vw]';                           // Desktop: 4+ cards
+    if (windowWidth < 1024) return 'w-[10vw]';    // Tablet: 3 cards
+    return 'w-[12vw]';                           // Desktop: 4+ cards
   };
 
   return (
@@ -83,7 +83,7 @@ const SliderContainer = ({ SliderData, Card }) => {
       <div
         ref={containerRef}
         style={{ scrollbarWidth: "none" }}
-        className="flex overflow-y-hidden flex-row overflow-x-scroll gap-4 md:gap-6 lg:gap-8 w-[90%] mx-auto snap-x snap-mandatory"
+        className="flex overflow-y-hidden py-10 flex-row overflow-x-scroll gap-4 md:gap-6 lg:gap-8 w-[90%] mx-auto snap-x snap-mandatory"
       >
         {SliderData.map((data, index) => (
           <div 
