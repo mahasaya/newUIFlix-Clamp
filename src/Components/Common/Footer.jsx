@@ -83,7 +83,7 @@ const Footer = () => {
         </div>
 
         {/* Links - Responsive alignment */}
-        <p className="text-gray-400 text-sm text-right md:text-left max-w-md">
+        <p className="text-gray-400 text-sm text-center max-w-md">
           FAQs | Privacy & Cookie Notice | Modern Slavery Act | Tax Statement
         </p>
       </div>
