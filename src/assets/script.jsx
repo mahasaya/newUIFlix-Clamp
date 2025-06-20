@@ -119,7 +119,6 @@ if (!distributor || !language || (!product_mpn && !product_ean)) {
 
   if(live === "1" ){
     flixScript.src='//media.flixfacts.com/js/loader.js' 
-    console.log("flixfact ran")
   }else{
     flixScript.src = "//delivery-alpha.flix360.io/js/loader-alpha.js"
     console.log("delivery-alpha ran")
