@@ -102,23 +102,39 @@
     transform: scaleY(-1) rotate(-135deg);
   }
 }
-
-@layer utilities {
-  .scrollbar-thin {
-    scrollbar-width: thin; /* For Firefox */
-  }
-
-  .scrollbar-thumb-gray-400::-webkit-scrollbar-thumb {
-    background-color: #9ca3af; /* Tailwind's gray-400 */
-    border-radius: 0.75rem; /* rounded-xl */
-  }
-
-  .scrollbar-track-transparent::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
+/* Scrollbar styles */
+.scrollbar-gutter-stable {
+  scrollbar-gutter: stable;
 }
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 4px;
+}
+
+.scrollbar-thumb-gray-300 {
+  scrollbar-color: #d1d5db transparent;
+}
+
+.hover\:scrollbar-thumb-gray-400:hover::-webkit-scrollbar-thumb {
+  background-color: #9ca3af;
+}
+
+.hover\:scrollbar-thumb-gray-400:hover {
+  scrollbar-color: #9ca3af transparent;
+}
+
+.scrollbar-track-gray-100::-webkit-scrollbar-track {
+  background-color: #f3f4f6;
+}
+
+

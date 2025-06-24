@@ -359,7 +359,7 @@ const ShopByCategory = () => {
         {/* View all button */}
         <div className="mt-14 text-center">
           <Link 
-            to="/categories" 
+            to="" 
             className="inline-flex items-center px-8 py-3.5 bg-[#41E886] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-[1.03] text-base group"
           >
             <span className="mr-2">View All Categories</span>

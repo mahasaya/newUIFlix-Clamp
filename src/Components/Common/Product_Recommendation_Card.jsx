@@ -17,7 +17,7 @@ const Product_Recommendation_Card = ({ SliderData, width, height }) => {
 
     if (formData?.mpn) params.set("mpn", formData?.mpn);
     if (formData?.ean) params.set("ean", formData?.ean);
-    navigate(`?${params.toString()}`, { replace: true });
+    navigate(`?${params.toString()} `);
   };
 
   return (

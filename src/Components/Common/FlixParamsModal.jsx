@@ -1,6 +1,6 @@
 // FlixParamsModal.jsx
-import React, { useState } from "react";
-import { FaTimes, FaInfo } from "react-icons/fa";
+import React, { useState, useEffect, useRef } from "react";
+import { FaTimes, FaInfo, FaCheck } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import {
   setDistributor,
@@ -21,6 +21,53 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
 
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
+  const [showLanguageSuggestions, setShowLanguageSuggestions] = useState(false);
+  const languageInputRef = useRef(null);
+  const suggestionsRef = useRef(null);
+
+  // Language options with localStorage persistence
+  const [languageOptions] = useState(() => {
+    const saved = localStorage.getItem("languageOptions");
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    return [
+      { value: "en", label: "English" },
+      { value: "fr", label: "French" },
+      { value: "de", label: "German" },
+      { value: "es", label: "Spanish" },
+      { value: "it", label: "Italian" },
+      { value: "nl", label: "Dutch" },
+      { value: "pt", label: "Portuguese" },
+      { value: "pl", label: "Polish" },
+      { value: "ru", label: "Russian" },
+      { value: "ja", label: "Japanese" },
+      { value: "zh", label: "Chinese" },
+      { value: "ko", label: "Korean" },
+      { value: "ar", label: "Arabic" },
+      { value: "tr", label: "Turkish" },
+      { value: "sv", label: "Swedish" },
+    ];
+  });
+
+  // Handle clicks outside the suggestions dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        languageInputRef.current &&
+        !languageInputRef.current.contains(event.target) &&
+        suggestionsRef.current &&
+        !suggestionsRef.current.contains(event.target)
+      ) {
+        setShowLanguageSuggestions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +78,11 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
 
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+
+    // Show suggestions when typing in language field
+    if (name === "language" && value.length > 0) {
+      setShowLanguageSuggestions(true);
     }
   };
 
@@ -73,11 +125,23 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
     }
   };
 
+  const handleLanguageSuggestionSelect = (value) => {
+    setFormData((prev) => ({ ...prev, language: value }));
+    setShowLanguageSuggestions(false);
+  };
+
+  // Filter language options based on current input
+  const filteredLanguageOptions = languageOptions.filter(
+    (option) =>
+      option.value.toLowerCase().includes(formData.language.toLowerCase()) ||
+      option.label.toLowerCase().includes(formData.language.toLowerCase())
+  );
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed text-lg inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl rounded-scrollbar shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-100">
+      <div className="bg-white rounded-2xl box-border shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-100 scrollbar-gutter-stable scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-400">
         <div className="flex items-center justify-between p-6 border-b border-gray-100 bg-gradient-to-r from-green-50 to-green-100 rounded-t-2xl">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-gradient-to-r from-green-400 to-green-500 rounded-full">
@@ -190,7 +254,7 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
               )}
             </div>
 
-            <div>
+            <div className="relative" ref={languageInputRef}>
               <label
                 htmlFor="language"
                 className="block text-sm font-semibold text-gray-700 mb-2"
@@ -203,6 +267,7 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
                 name="language"
                 value={formData.language}
                 onChange={handleInputChange}
+                onFocus={() => setShowLanguageSuggestions(true)}
                 className={`w-full px-4 py-1 border-1 rounded-xl focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400 transition-all duration-200 ${
                   errors.language
                     ? "border-red-400 bg-red-50"
@@ -211,10 +276,50 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
                 placeholder="Enter language code (e.g., en, fr, de, es)"
                 maxLength={5}
               />
+
+              {showLanguageSuggestions && (
+                <div
+                  ref={suggestionsRef}
+                  className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto"
+                >
+                  <div className="py-2">
+                    {filteredLanguageOptions.length > 0 ? (
+                      filteredLanguageOptions.map((option) => (
+                        <div
+                          key={option.value}
+                          className={`px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center ${
+                            formData.language === option.value
+                              ? "bg-green-50"
+                              : ""
+                          }`}
+                          onClick={() =>
+                            handleLanguageSuggestionSelect(option.value)
+                          }
+                        >
+                          <span className="font-medium w-8">
+                            {option.value}
+                          </span>
+                          <span className="text-gray-600 ml-3">
+                            {option.label}
+                          </span>
+                          {formData.language === option.value && (
+                            <FaCheck className="ml-auto text-green-500" />
+                          )}
+                        </div>
+                      ))
+                    ) : (
+                      <div className="px-4 py-2 text-gray-500">
+                        No matching languages found
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
               <p className="text-xs text-gray-500 mt-1">
-                Enter 2-5 character language code (e.g., en for English, fr for
-                French, de for German)
+                Type a language code or select from suggestions
               </p>
+
               {errors.language && (
                 <p className="text-red-500 text-sm mt-2 flex items-center">
                   <span className="w-1 h-1 bg-red-500 rounded-full mr-2"></span>

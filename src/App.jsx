@@ -16,7 +16,6 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 function App() {
   const location = useLocation();
-
   function RedirectHandler() {
     const navigate = useNavigate();
 
@@ -66,9 +65,9 @@ function App() {
           <Route element={<Phones />} path="/phones" />
           <Route element={<TV />} path="/tv-&-entertainment" />
           <Route element={<Computing />} path="/computing" />
-          <Route path="/computing/:tag" element={<Products />} />
-          <Route path="/tv-&-entertainment/:tag" element={<Products />} />
-          <Route path="/kitchen-appliances/:tag?" element={<Products />} />
+          <Route path="/computing/:tag?" element={<Products />} />
+          <Route path="/tv-&-entertainment/:tag?" element={<Products />} />
+          <Route path="/kitchen-appliances?/:tag?" element={<Products />} />
           <Route path="/tv-&-entertainment/:tag?" element={<Products />} />
           <Route path="/small-appliances/:tag?" element={<Products />} />
           <Route path="/phones/:tag?" element={<Products />} />

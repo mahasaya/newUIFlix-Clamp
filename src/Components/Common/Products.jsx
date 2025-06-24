@@ -1,6 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { ProductDetails } from "../../assets/dummyData";
-import { useParams, useSearchParams } from "react-router-dom";
+import {
+  useNavigationType,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import Product_Card from "../Common/Product_Card";
 import SliderContainer from "../Core/Home/SliderContainer";
 import { ProductRecommendation } from "../../assets/dummyData";
@@ -8,22 +12,45 @@ import Product_Recommendation_Card from "./Product_Recommendation_Card";
 import CTAButtons from "./CTAButtons";
 import { fliXScript } from "../../assets/script";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Products = () => {
   const { tag } = useParams();
   const [searchParams] = useSearchParams();
   const flixInpageRef = useRef();
+  const miniRef = useRef(null);
   const [showFlixDiv, setShowFlixDiv] = useState(false);
   const location = useLocation();
-  const [flixHeight, setFlixHeight] = useState("")
+  const navigationType = useNavigationType();
+  const global_variable = useSelector((state) => state.flixParams.global_variable);
+  const [flixHeight, setFlixHeight] = useState("");
+
+// useEffect(() => {
+//   return () => {
+//     if (navigationType === "POP") {
+//       const currentGlobals = Object.keys(window);
+//       const newGlobals = currentGlobals.filter(
+//         (key) => !global_variable.includes(key)
+//       );
+
+//       newGlobals.forEach((key) => {
+//         if (key.startsWith("flix")) {
+//           try {
+//             delete window[key];
+//           } catch (e) {
+//             console.warn("Failed to delete:", key, e);
+//           }
+//         }
+//       });
+//     }
+//   };
+// }, [navigationType, global_variable]);
+
   // const [spinner , setSpinner] = useState(true)
-  useEffect(() => {
-    window.addEventListener("pageshow", (event) => {
-    if (event.persisted) {
-      // Page was restored from bfcache
-      window.location.reload(); // Force reload from server
-    }
-  });
-  }, [location.key]);
+  const focusDiv = () => {
+    miniRef.current?.focus();
+    miniRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    console.log("this ran");
+  };
 
   useEffect(() => {
     const distributor = searchParams.get("distId");
@@ -31,8 +58,9 @@ const Products = () => {
     const product_mpn = searchParams.get("mpn");
     const product_ean = searchParams.get("ean");
     const product_brand = searchParams.get("brand");
-    const live = searchParams.get("live")
+    const live = searchParams.get("live");
     const flixDiv = flixInpageRef.current;
+
     if (live && distributor && language && (product_mpn || product_ean)) {
       fliXScript({
         distributor,
@@ -40,7 +68,7 @@ const Products = () => {
         product_mpn,
         product_ean,
         product_brand,
-        live
+        live,
       });
     } else {
       console.warn("Missing necessary query params for FlixScript");
@@ -61,19 +89,17 @@ const Products = () => {
       if (typeof window.flixJsCallbacks?.reset === "function") {
         window.flixJsCallbacks.reset();
       }
-      localStorage.clear();
-      sessionStorage.clear();
+
       const existingScript = document.getElementById("flix-script");
       if (existingScript) existingScript.remove();
     };
-
-    // setSpinner(false)
   }, [searchParams]);
 
   useEffect(() => {
     const observer = new MutationObserver(() => {
       const secondChild = flixInpageRef.current?.children?.[1];
       if (secondChild) {
+        console.log(secondChild.offsetHeight);
         setFlixHeight(secondChild.offsetHeight);
       }
     });
@@ -175,8 +201,10 @@ const Products = () => {
           <div className="w-[20%] min-w-[200px]">
             <CTAButtons
               outline={false}
-              text={showFlixDiv ? "View Less":"View More"}
-              btnFunction={() => setShowFlixDiv(!showFlixDiv)}
+              text={showFlixDiv ? "View Less" : "View More"}
+              btnFunction={() => {
+                setShowFlixDiv(!showFlixDiv), !showFlixDiv && focusDiv();
+              }}
             />
           </div>
         </div>
@@ -191,7 +219,12 @@ const Products = () => {
         >
           <div id="flix-minisite"></div>
 
-          <div id="flix-inpage"></div>
+          <div
+            ref={miniRef}
+            style={{ outline: "none" }}
+            tabIndex={-1}
+            id="flix-inpage"
+          ></div>
         </div>
       </div>
 

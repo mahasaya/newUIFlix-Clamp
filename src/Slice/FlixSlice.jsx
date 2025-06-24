@@ -30,5 +30,5 @@ const FlixSlice = createSlice({
     }
 })
 
-export const {setDistributor,setLanguage,setProduct_brand,setProduct_ean,setProduct_mpn} = FlixSlice.actions;
+export const {setDistributor,setLanguage,setProduct_brand,setProduct_ean,setProduct_mpn,setGlobal_variable} = FlixSlice.actions;
 export default FlixSlice.reducer
