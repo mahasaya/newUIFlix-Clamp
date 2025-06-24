@@ -9,6 +9,13 @@ import {
   setProduct_ean,
   setProduct_brand,
 } from "../../Slice/FlixSlice";
+import { languageOptions } from "../../assets/dummyData";
+
+// Helper function to extract language code
+const extractLanguageCode = (optionStr) => {
+  const matches = optionStr.match(/\(([^)]+)\)\s*$/);
+  return matches ? matches[1] : optionStr;
+};
 
 const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
   const [formData, setFormData] = useState({
@@ -24,31 +31,6 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
   const [showLanguageSuggestions, setShowLanguageSuggestions] = useState(false);
   const languageInputRef = useRef(null);
   const suggestionsRef = useRef(null);
-
-  // Language options with localStorage persistence
-  const [languageOptions] = useState(() => {
-    const saved = localStorage.getItem("languageOptions");
-    if (saved) {
-      return JSON.parse(saved);
-    }
-    return [
-      { value: "en", label: "English" },
-      { value: "fr", label: "French" },
-      { value: "de", label: "German" },
-      { value: "es", label: "Spanish" },
-      { value: "it", label: "Italian" },
-      { value: "nl", label: "Dutch" },
-      { value: "pt", label: "Portuguese" },
-      { value: "pl", label: "Polish" },
-      { value: "ru", label: "Russian" },
-      { value: "ja", label: "Japanese" },
-      { value: "zh", label: "Chinese" },
-      { value: "ko", label: "Korean" },
-      { value: "ar", label: "Arabic" },
-      { value: "tr", label: "Turkish" },
-      { value: "sv", label: "Swedish" },
-    ];
-  });
 
   // Handle clicks outside the suggestions dropdown
   useEffect(() => {
@@ -125,16 +107,19 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
     }
   };
 
-  const handleLanguageSuggestionSelect = (value) => {
-    setFormData((prev) => ({ ...prev, language: value }));
+  const handleLanguageSuggestionSelect = (option) => {
+    const lang = extractLanguageCode(option);
+    setFormData((prev) => ({ ...prev, language: lang }));
     setShowLanguageSuggestions(false);
   };
 
   // Filter language options based on current input
   const filteredLanguageOptions = languageOptions.filter(
     (option) =>
-      option.value.toLowerCase().includes(formData.language.toLowerCase()) ||
-      option.label.toLowerCase().includes(formData.language.toLowerCase())
+      option.toLowerCase().includes(formData.language.toLowerCase()) ||
+      extractLanguageCode(option)
+        .toLowerCase()
+        .includes(formData.language.toLowerCase())
   );
 
   if (!isOpen) return null;
@@ -274,7 +259,7 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
                     : "border-gray-200 hover:border-gray-300"
                 }`}
                 placeholder="Enter language code (e.g., en, fr, de, es)"
-                maxLength={5}
+                maxLength={10}
               />
 
               {showLanguageSuggestions && (
@@ -284,29 +269,27 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
                 >
                   <div className="py-2">
                     {filteredLanguageOptions.length > 0 ? (
-                      filteredLanguageOptions.map((option) => (
-                        <div
-                          key={option.value}
-                          className={`px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center ${
-                            formData.language === option.value
-                              ? "bg-green-50"
-                              : ""
-                          }`}
-                          onClick={() =>
-                            handleLanguageSuggestionSelect(option.value)
-                          }
-                        >
-                          <span className="font-medium w-8">
-                            {option.value}
-                          </span>
-                          <span className="text-gray-600 ml-3">
-                            {option.label}
-                          </span>
-                          {formData.language === option.value && (
-                            <FaCheck className="ml-auto text-green-500" />
-                          )}
-                        </div>
-                      ))
+                      filteredLanguageOptions.map((option) => {
+                        const code = extractLanguageCode(option);
+                        return (
+                          <div
+                            key={option}
+                            className={`px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center ${
+                              formData.language === code
+                                ? "bg-green-50"
+                                : ""
+                            }`}
+                            onClick={() => handleLanguageSuggestionSelect(option)}
+                          >
+                            <span className="font-medium w-auto">
+                              {option}
+                            </span>
+                            {formData.language === code && (
+                              <FaCheck className="ml-auto text-green-500" />
+                            )}
+                          </div>
+                        );
+                      })
                     ) : (
                       <div className="px-4 py-2 text-gray-500">
                         No matching languages found
