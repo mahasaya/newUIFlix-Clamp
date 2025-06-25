@@ -17,12 +17,23 @@ const extractLanguageCode = (optionStr) => {
   return matches ? matches[1] : optionStr;
 };
 
+// Helper function to move item to top
+const moveToTop = (array, item) => {
+  const newArray = [...array];
+  const index = newArray.indexOf(item);
+  if (index !== -1) {
+    newArray.splice(index, 1);
+    newArray.unshift(item);
+  }
+  return newArray;
+};
+
 const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
   const [formData, setFormData] = useState({
     distributorID: "",
     mpn: "",
     ean: "",
-    language: "en",
+    language: "",
     live: "1",
   });
 
@@ -121,6 +132,16 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
         .toLowerCase()
         .includes(formData.language.toLowerCase())
   );
+
+  // Create sorted options with selected language at the top
+  const sortedLanguageOptions = formData.language
+    ? moveToTop(
+        filteredLanguageOptions,
+        filteredLanguageOptions.find(
+          (opt) => extractLanguageCode(opt) === formData.language
+        )
+      )
+    : filteredLanguageOptions;
 
   if (!isOpen) return null;
 
@@ -268,20 +289,20 @@ const FlixParamsModal = ({ isOpen, onClose, onSubmit, productName }) => {
                   className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto"
                 >
                   <div className="py-2">
-                    {filteredLanguageOptions.length > 0 ? (
-                      filteredLanguageOptions.map((option) => {
+                    {sortedLanguageOptions.length > 0 ? (
+                      sortedLanguageOptions.map((option) => {
                         const code = extractLanguageCode(option);
                         return (
                           <div
                             key={option}
                             className={`px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center ${
-                              formData.language === code
-                                ? "bg-green-50"
-                                : ""
+                              formData.language === code ? "bg-green-50" : ""
                             }`}
-                            onClick={() => handleLanguageSuggestionSelect(option)}
+                            onClick={() =>
+                              handleLanguageSuggestionSelect(option)
+                            }
                           >
-                            <span className="font-medium w-auto">
+                            <span className="font-normal text-sm text-gray-500 w-auto">
                               {option}
                             </span>
                             {formData.language === code && (

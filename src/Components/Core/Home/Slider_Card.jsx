@@ -49,7 +49,7 @@ const Slider_Card = ({ SliderData, width, height }) => {
           /> */}
 
           {/* Image container */}
-          <div className="relative mx-auto w-[60%] h-auto z-10">
+          <div className="relative mx-auto w-[60%] h-auto ">
             <img
               className="w-full h-auto"
               src={SliderData?.img}

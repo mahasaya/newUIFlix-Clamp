@@ -10,11 +10,15 @@ import { highlightBarData } from "../../assets/dummyData";
 import useChangeURL from "../Hooks/useChangeURL";
 import { Link } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
+import { CiSearch } from "react-icons/ci";
+import { motion } from "motion/react";
 // const SLIDE_INTERVAL = 5000;
 const NavBar = () => {
   const navigate = useNavigate();
   const indexes = useChangeURL();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showDropdowm, setShowDropdown] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
   // const [currentIndex, setCurrentIndex] = useState(0);
   // const containerRef = useRef(null);
 
@@ -72,8 +76,17 @@ const NavBar = () => {
             ))}
           </div>
         </div>
-      </div> */}
-      <div className="flex pt-5 bg-black flex-col">
+      </div> */}  
+              <motion.div
+          initial={{ transform: "translateY(-300px)" }}
+          animate={{ transform: "translateY(0)" }}
+          transition={{
+            type: "spring",
+            bounce: 0.25,
+            duration: 0.8, 
+          }}
+        >
+                <div className="flex pt-5 bg-black flex-col">
         {/* Top Bar - Mobile Friendly */}
         <div className="flex flex-col gap-5 md:flex-row md:gap-0 w-full py-2.5 justify-between items-center px-4 sm:px-5">
           <div className="flex items-center justify-between w-full mr-4 md:w-auto flex-1/6">
@@ -104,7 +117,26 @@ const NavBar = () => {
               mobileMenuOpen ? "flex" : "hidden"
             } flex-1/2 justify-between md:flex flex-col md:flex-row w-full md:w-auto items-center gap-4 `}
           >
-            <SearchBar mobileOpen={mobileMenuOpen} />
+            <div>
+              {/* SEARCH-BAR */}
+              {
+                !showDropdowm &&
+                <div
+                  className={`min-w-[380px]  flex justify-between w-[100%] sm:w-[40%] bg-[#41E886] items-center gap-5 
+                    rounded-lg
+                   px-3`}
+                >
+                  <input
+                    onClick={()=>setShowDropdown(true)}
+                    className={`max-w-[350px] bg-[#41E886] px-2 rounded-3xl text-[black] placeholder-black w-[70%] py-2 appearance-none border-none focus:outline-none`}
+                    type="text"
+                    placeholder="Search for the product"
+                  />
+                  <CiSearch color="black" size={24} style={{ strokeWidth: 0.5 }} />
+                </div>
+              }
+            </div>
+            
             <div className="flex gap-8 py-3 md:py-0">
               <IoPersonSharp
                 onClick={() => handleClick("profile")}
@@ -155,6 +187,14 @@ const NavBar = () => {
       <div className="w-full bg-black border-t border-b border-gray-600 py-2 flex items-center justify-start px-4 md:px-10 lg:px-20">
         <span className="text-xs  font-medium"><Link to="/" className="text-white hover:text-[#41E886]">Home</Link> <span className="text-white hover:text-[#41E886] capitalize">{` ${indexes}`}</span></span>
       </div>
+          </motion.div>         
+
+
+                {
+showDropdowm &&
+          <SearchBar showDropdowm={showDropdowm} setShowDropdown={setShowDropdown} searchInput={searchInput} setSearchInput={setSearchInput} mobileOpen={mobileMenuOpen} />
+          }
+          
     </>
   );
 };

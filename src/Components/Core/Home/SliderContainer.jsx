@@ -83,7 +83,7 @@ const SliderContainer = ({ SliderData, Card }) => {
     <div className="flex relative w-full my-15">
       {/* Right Button - Conditionally shown */}
       {showRightButton && (
-        <div className="absolute cursor-pointer flex items-center justify-center w-[30px] z-50 h-[30px] top-[47%] right-5">
+        <div className="absolute cursor-pointer flex items-center justify-center w-[30px]  h-[30px] top-[47%] right-5">
           <button
             aria-label="Next Course"
             onClick={() => scroll(1)}
@@ -96,7 +96,7 @@ const SliderContainer = ({ SliderData, Card }) => {
 
       {/* Left Button - Conditionally shown */}
       {showLeftButton && (
-        <div className="absolute cursor-pointer flex items-center justify-center z-50 w-[30px] h-[30px] top-[47%] left-5">
+        <div className="absolute cursor-pointer flex items-center justify-center w-[30px] h-[30px] top-[47%] left-5">
           <button
             aria-label="Previous Course"
             onClick={() => scroll(-1)}

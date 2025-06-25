@@ -44,17 +44,9 @@ function App() {
     <>
       <RedirectHandler />
       <div className="overflow-x-hidden cursor-default min-h-screen w-full bg-black flex flex-col">
-        <motion.div
-          initial={{ transform: "translateY(-300px)" }}
-          animate={{ transform: "translateY(0)" }}
-          transition={{
-            type: "spring",
-            bounce: 0.25,
-            duration: 0.8, 
-          }}
-        >
+
           <NavBar />
-        </motion.div>
+      
 
         <Routes>
           <Route path="/" element={<Home />}></Route>
