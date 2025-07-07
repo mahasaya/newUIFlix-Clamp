@@ -5,6 +5,7 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
+
 import Product_Card from "../Common/Product_Card";
 import SliderContainer from "../Core/Home/SliderContainer";
 import { ProductRecommendation } from "../../assets/dummyData";
@@ -13,39 +14,22 @@ import CTAButtons from "./CTAButtons";
 import { fliXScript } from "../../assets/script";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import useFetchUrl from "../Hooks/useFetchUrl";
 const Products = () => {
   const { tag } = useParams();
   const [searchParams] = useSearchParams();
   const flixInpageRef = useRef();
   const miniRef = useRef(null);
   const [showFlixDiv, setShowFlixDiv] = useState(false);
+  const [productImg,setProductImg] = useState()
   const location = useLocation();
   const navigationType = useNavigationType();
   const global_variable = useSelector((state) => state.flixParams.global_variable);
+  const [prod_Name , setProdName] = useState()
   const [flixHeight, setFlixHeight] = useState("");
+  const distributor = searchParams.get("distId");
+const [maxHeight, setMaxHeight] = useState("350px");
 
-// useEffect(() => {
-//   return () => {
-//     if (navigationType === "POP") {
-//       const currentGlobals = Object.keys(window);
-//       const newGlobals = currentGlobals.filter(
-//         (key) => !global_variable.includes(key)
-//       );
-
-//       newGlobals.forEach((key) => {
-//         if (key.startsWith("flix")) {
-//           try {
-//             delete window[key];
-//           } catch (e) {
-//             console.warn("Failed to delete:", key, e);
-//           }
-//         }
-//       });
-//     }
-//   };
-// }, [navigationType, global_variable]);
-
-  // const [spinner , setSpinner] = useState(true)
   const focusDiv = () => {
     miniRef.current?.focus();
     miniRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -53,7 +37,18 @@ const Products = () => {
   };
 
   useEffect(() => {
-    const distributor = searchParams.get("distId");
+  if (showFlixDiv) {
+    const timer = setTimeout(() => {
+      setMaxHeight(`${flixHeight + 9000}px`);
+    }, 100);
+    return () => clearTimeout(timer); // Cleanup
+  } else {
+    setMaxHeight("350px");
+  }
+}, [showFlixDiv, flixHeight]);
+
+  useEffect(() => {
+   
     const language = searchParams.get("iso");
     const product_mpn = searchParams.get("mpn");
     const product_ean = searchParams.get("ean");
@@ -80,11 +75,10 @@ const Products = () => {
 
       const flixInpage = document.createElement("div");
       flixInpage.id = "flix-inpage";
-
       flixDiv.appendChild(flixMini);
       flixDiv.appendChild(flixInpage);
     }
-
+useFetchUrl(setProductImg,setProdName)
     return () => {
       if (typeof window.flixJsCallbacks?.reset === "function") {
         window.flixJsCallbacks.reset();
@@ -92,11 +86,13 @@ const Products = () => {
 
       const existingScript = document.getElementById("flix-script");
       if (existingScript) existingScript.remove();
+      setProductImg(null)
     };
   }, [searchParams]);
-
   useEffect(() => {
-    const observer = new MutationObserver(() => {
+    if(miniRef)
+{    
+  const observer = new MutationObserver(() => {
       const secondChild = flixInpageRef.current?.children?.[1];
       if (secondChild) {
         console.log(secondChild.offsetHeight);
@@ -113,47 +109,25 @@ const Products = () => {
       // Initial check
       const secondChild = flixInpageRef.current.children[1];
       if (secondChild) {
+        console.log(secondChild.offsetHeight)
         setFlixHeight(secondChild.offsetHeight);
       }
     }
 
-    return () => observer.disconnect();
-  }, []);
-
-
-  // Re-run Flix script on route changes (including browser back/forward)
-  // useEffect(() => {
-  //   const distributor = searchParams.get("distId");
-  //   const language = searchParams.get("iso");
-  //   const product_mpn = searchParams.get("mpn");
-  //   const product_ean = searchParams.get("ean");
-  //   const product_brand = searchParams.get("brand");
-
-  //   if (distributor && language && (product_mpn || product_ean)) {
-  //     fliXScript({ distributor, language, product_mpn, product_ean, product_brand });
-  //   }
-
-  //   return () => {
-  //     if (typeof window.flixJsCallbacks?.reset === 'function') {
-  //       window.flixJsCallbacks.reset();
-  //     }
-
-  //     const existingScript = document.getElementById("flix-script");
-  //     if (existingScript) existingScript.remove();
-  //   };
-  // }, [location.key]);
+    return () => observer.disconnect();}
+  }, [miniRef?.current?.offsetHeight]);
 
   const product = ProductDetails.find((e) => e?.tag === tag);
-  // if(spinner){
-  // return<div className='spinner'>
-
-  // </div>
-  // }
+  if(!productImg?.length){
+  return<div className='w-full text-white h-screen flex items-center justify-center'>
+    Loading....
+  </div>
+  }
   return (
     <div className="w-full h-full bg-[#f2f2f2]">
       {product?.details.map((data, index) => (
         <div key={index}>
-          <Product_Card tag={product?.tag} details={data} />
+          <Product_Card productName={prod_Name} img={productImg} tag={product?.tag} details={data} />
         </div>
       ))}
 
@@ -213,7 +187,7 @@ const Products = () => {
             transition-all duration-600 ease-in-out 
             overflow-hidden
           `}
-          style={{ maxHeight: showFlixDiv ? `${flixHeight + 300}px` : "350px" }}
+          style={ {maxHeight}}
           ref={flixInpageRef}
           id="flix-Div"
         >

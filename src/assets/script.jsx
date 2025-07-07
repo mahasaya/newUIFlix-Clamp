@@ -116,13 +116,22 @@ if (!distributor || !language || (!product_mpn && !product_ean)) {
   flixScript.setAttribute('data-flix-inpage', 'flix-inpage');
   flixScript.setAttribute('data-flix-button', 'flix-minisite');
   flixScript.setAttribute('data-flix-price', '');
-
+if(distributor === "2298"){
+    if(live === "1" ){
+    flixScript.src='https://media.flixsyndication.net/delivery/js/loader-embed-v2.js' 
+  }else{
+    flixScript.src = "https://demo.flix360.io/performance/modularvnew/js/embedv2.js?v=v3v23&flix-webp=1"
+    console.log("delivery-alpha ran")
+  }
+}else{
   if(live === "1" ){
     flixScript.src='//media.flixfacts.com/js/loader.js' 
   }else{
     flixScript.src = "//delivery-alpha.flix360.io/js/loader-alpha.js"
     console.log("delivery-alpha ran")
   }
+}
+
   // Add onload handler
   flixScript.onload = function() {
     console.log('Flix script loaded successfully');
