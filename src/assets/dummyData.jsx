@@ -14,7 +14,7 @@ import imageNine from "../../public/Sldier-Images/9.webp";
 import imageTen from "../../public/Sldier-Images/10.webp";
 import imageEleven from "../../public/Sldier-Images/11.webp";
 import imageTwelve from "../../public/Sldier-Images/12.webp";
-import productImg from "../../src/img-feature-big.jpg";
+import productImg from "../../public/img-feature-big.jpg";
 import secProductImg from "../../public/img-product-small.jpg";
 import bannerPhoneImg from "../../public/Product-Images/phone-banner.webp";
 import bannerSecPhoneImg from "../../public/Product-Images/phone-banner-2.webp";
