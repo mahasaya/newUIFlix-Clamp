@@ -2,25 +2,28 @@ import { HiCurrencyPound } from "react-icons/hi2";
 import { FaTruck } from "react-icons/fa";
 import { FaPiggyBank } from "react-icons/fa";
 import { FaVideo } from "react-icons/fa";
-import imageOne from "../../public/Sldier-Images/top-cat-hp-summer-tech.webp";
-import imageTwo from "../../public/Sldier-Images/2.webp";
-import imageThree from "../../public/Sldier-Images/3.webp";
-import imageFour from "../../public/Sldier-Images/4.webp";
-import imageFive from "../../public/Sldier-Images/5.webp";
-import imageSix from "../../public/Sldier-Images/6.webp";
-import imageSeven from "../../public/Sldier-Images/7.webp";
-import imageEight from "../../public/Sldier-Images/8.webp";
-import imageNine from "../../public/Sldier-Images/9.webp";
-import imageTen from "../../public/Sldier-Images/10.webp";
-import imageEleven from "../../public/Sldier-Images/11.webp";
-import imageTwelve from "../../public/Sldier-Images/12.webp";
-import productImg from "../../public/img-feature-big.jpg";
-import secProductImg from "../../public/img-product-small.jpg";
-import bannerPhoneImg from "../../public/Product-Images/phone-banner.webp";
-import bannerSecPhoneImg from "../../public/Product-Images/phone-banner-2.webp";
-import laptopPhoneImg from "../../public/Product-Images/lap-banner.webp";
-import laptopSecPhoneImg from "../../public/Product-Images/lap-banner-2.webp";
-import tvImg from "../../public/Product-Images/tv-banner.webp";
+
+import imageOne from "./images/Sldier-Images/top-cat-hp-summer-tech.webp";
+import imageTwo from "./images/Sldier-Images/2.webp";
+import imageThree from "./images/Sldier-Images/3.webp";
+import imageFour from "./images/Sldier-Images/4.webp";
+import imageFive from "./images/Sldier-Images/5.webp";
+import imageSix from "./images/Sldier-Images/6.webp";
+import imageSeven from "./images/Sldier-Images/7.webp";
+import imageEight from "./images/Sldier-Images/8.webp";
+import imageNine from "./images/Sldier-Images/9.webp";
+import imageTen from "./images/Sldier-Images/10.webp";
+import imageEleven from "./images/Sldier-Images/11.webp";
+import imageTwelve from "./images/Sldier-Images/12.webp";
+
+import productImg from "./images/img-feature-big.jpg";
+import secProductImg from "./images/img-product-small.jpg";
+
+import bannerPhoneImg from "./images/Product-Images/phone-banner.webp";
+import bannerSecPhoneImg from "./images/Product-Images/phone-banner-2.webp";
+import laptopPhoneImg from "./images/Product-Images/lap-banner.webp";
+import laptopSecPhoneImg from "./images/Product-Images/lap-banner-2.webp";
+import tvImg from "./images/Product-Images/tv-banner.webp";
 
 export const bannerNav = [
   "kitchen appliances",

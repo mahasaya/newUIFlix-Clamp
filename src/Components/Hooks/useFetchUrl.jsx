@@ -1,4 +1,4 @@
-import fall_back_img from "../../../public/fall_back_product_img.jpg";
+import fall_back_img from "../../assets/images/fall_back_product_img.jpg";
 //embed.json / sis.json
 const useFetchUrl = (setProductImg ,setProductName) => {
   // Intercept fetch()

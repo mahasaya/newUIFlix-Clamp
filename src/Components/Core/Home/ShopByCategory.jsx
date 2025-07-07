@@ -256,11 +256,11 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import kitchenImg from "../../../../public/shopbycategpry/kitchen.jpeg"
-import smallImg from "../../../../public/shopbycategpry/others.jfif"
-import tvImg from "../../../../public/shopbycategpry/tv.jfif"
-import laptopImg from "../../../../public/shopbycategpry/laptop.jfif"
-import phoneImg from "../../../../public/shopbycategpry/phone.jfif"
+import kitchenImg from "../../../assets/images/shopbycategpry/kitchen.jpeg"
+import smallImg from "../../../assets/images/shopbycategpry/others.jfif"
+import tvImg from "../../../assets/images/shopbycategpry/tv.jfif"
+import laptopImg from "../../../assets/images/shopbycategpry/laptop.jfif"
+import phoneImg from "../../../assets/images/shopbycategpry/phone.jfif"
 const ShopByCategory = () => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
   
