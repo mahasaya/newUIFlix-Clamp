@@ -10,14 +10,14 @@ const useFetchUrl = (setProductImg ,setProductName) => {
       console.log(`'t.json' requested via fetch:`, url);
       const response = await originalFetch(...args);
 
-      // Clone to safely read body (body can be read only once)
+      
       const clonedResponse = response.clone();
       clonedResponse
         .json()
         .then((data) => {
           console.log('t.json fetch response:', data);
-            setProductName(data?.[0]?.product_meta?.product_title)
-            console.log(data?.[0]?.product_meta?.product_title)
+          const imgName = data?.[0]?.product_meta?.product_title || "Product Name"
+          setProductName(imgName)
           const productImgUrl =
             data?.[0]?.modules?.image_gallery?.images?.[0]?.img_1000_url;
           if (productImgUrl) {

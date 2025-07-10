@@ -132,7 +132,6 @@ const NavBar = () => {
               {bannerNav.map((data, index) => (
                 <span
                   key={index}
-                  onClick={() => handleClick(`/${data.split(" ").join("-")}`)}
                   className="uppercase hover:text-[#41E886]  text-white font-[700] text-sm lg:text-base cursor-pointer hover:opacity-75 transition-opacity"
                 >
                   {data}

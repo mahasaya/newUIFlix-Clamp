@@ -5,7 +5,6 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
-
 import Product_Card from "../Common/Product_Card";
 import SliderContainer from "../Core/Home/SliderContainer";
 import { ProductRecommendation } from "../../assets/dummyData";
@@ -35,6 +34,10 @@ const [maxHeight, setMaxHeight] = useState("350px");
     miniRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     console.log("this ran");
   };
+
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  },[])
 
   useEffect(() => {
   if (showFlixDiv) {
@@ -120,7 +123,7 @@ useFetchUrl(setProductImg,setProdName)
   const product = ProductDetails.find((e) => e?.tag === tag);
   if(!productImg?.length){
   return<div className='w-full text-white h-screen flex items-center justify-center'>
-    Loading....
+      <div className="spinner"></div>
   </div>
   }
   return (

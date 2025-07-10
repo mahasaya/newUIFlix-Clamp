@@ -310,7 +310,6 @@ const ShopByCategory = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {categories.map((category, index) => (
             <Link 
-              to={category.path}
               key={index}
               className="group flex justify-between flex-col relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200"
               onMouseEnter={() => setHoveredCategory(index)}

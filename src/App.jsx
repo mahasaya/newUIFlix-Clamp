@@ -14,6 +14,7 @@ import Footer from "./Components/Common/Footer";
 import Products from "./Components/Common/Products";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
+import ScrollToTop from "./assets/ScollTop";
 function App() {
   const location = useLocation();
   function RedirectHandler() {
@@ -43,6 +44,7 @@ function App() {
   return (
     <>
       <RedirectHandler />
+      {/* <ScrollToTop/> */}
       <div className="overflow-x-hidden cursor-default min-h-screen w-full bg-black flex flex-col">
 
           <NavBar />
