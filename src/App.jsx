@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
+
 import NavBar from "./Components/Common/NavBar";
-import { Route, Routes, useLocation, useSearchParams } from "react-router-dom";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
@@ -12,25 +13,26 @@ import TV from "./pages/TV";
 import Computing from "./pages/Computing";
 import Footer from "./Components/Common/Footer";
 import Products from "./Components/Common/Products";
-import { useNavigate } from "react-router-dom";
-import { motion } from "motion/react";
 import ScrollToTop from "./assets/ScollTop";
+
 function App() {
   const location = useLocation();
-  function RedirectHandler() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-      const params = new URLSearchParams(window.location.search);
-      const redirect = params.get("redirect");
+  // Redirect handler for GitHub Pages fallback
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get("redirect");
 
-      if (redirect) {
-        navigate(redirect, { replace: true });
-      }
-    }, []);
+    if (redirect) {
+      // Clean the URL
+      window.history.replaceState(null, "", redirect);
+      // Navigate to the real route
+      navigate(redirect, { replace: true });
+    }
+  }, []);
 
-    return null;
-  }
+
   useEffect(() => {
     const query = location.search;
     if (
@@ -41,30 +43,28 @@ function App() {
       window.flixJsCallbacks.reset();
     }
   }, [location]);
+
   return (
     <>
-      <RedirectHandler />
       <div className="overflow-x-hidden cursor-default min-h-screen w-full bg-black flex flex-col">
-
-          <NavBar />
-      
+        <NavBar />
 
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route element={<Profile />} path="/profile" />
-          <Route element={<Cart />} path="/cart" />
-          <Route element={<Kitchen />} path="/kitchen-appliances" />
-          <Route element={<SmallAppliance />} path="/small-appliances" />
-          <Route element={<Phones />} path="/phones" />
-          <Route element={<TV />} path="/tv-&-entertainment" />
-          <Route element={<Computing />} path="/computing" />
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/kitchen-appliances" element={<Kitchen />} />
+          <Route path="/small-appliances" element={<SmallAppliance />} />
+          <Route path="/phones" element={<Phones />} />
+          <Route path="/tv-&-entertainment" element={<TV />} />
+          <Route path="/computing" element={<Computing />} />
+
+          {/* Product routes */}
           <Route path="/computing/:tag?" element={<Products />} />
           <Route path="/tv-&-entertainment/:tag?" element={<Products />} />
-          <Route path="/kitchen-appliances?/:tag?" element={<Products />} />
-          <Route path="/tv-&-entertainment/:tag?" element={<Products />} />
+          <Route path="/kitchen-appliances/:tag?" element={<Products />} />
           <Route path="/small-appliances/:tag?" element={<Products />} />
           <Route path="/phones/:tag?" element={<Products />} />
-
         </Routes>
 
         <Footer />
