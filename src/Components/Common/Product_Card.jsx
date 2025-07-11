@@ -72,7 +72,7 @@ const Product_Card = ({productName,img,tag,details}) => {
                 </div>
             </div>
 
-            <div className='flex flex-col gap-4 md:gap-6'>
+            <div className='flex md:items-start items-center flex-col gap-4 md:gap-6'>
                <CTAButtons 
                 text={"Add to basket"}
                 outline={true}
