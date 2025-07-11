@@ -27,10 +27,10 @@ function App() {
 
 
     if (redirect) {
-      const decodedPath = decodeURIComponent(redirect);
-      window.history.replaceState(null, '', decodedPath); // now valid
-      console.log(decodedPath)
-      navigate(decodedPath, { replace: true });
+      // const decodedPath = decodeURIComponent(redirect);
+      window.history.replaceState(null, '', redirect); // now valid
+      console.log(redirect)
+      navigate(redirect, { replace: true });
     }
   }, []);
 
