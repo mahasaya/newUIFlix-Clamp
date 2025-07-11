@@ -16,7 +16,7 @@
       const hash = window.location.hash;
 
       // Build redirect URL: index.html + ?redirect=originalPath
-      const redirectUrl = `${repo}/index.html?redirect=${encodeURIComponent(path+ search + hash)}`;
+      const redirectUrl = `${repo}/${encodeURIComponent(path+ search + hash)}`;
       window.location.replace(redirectUrl);
     </script>
   </body>
