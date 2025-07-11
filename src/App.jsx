@@ -43,8 +43,7 @@ function App() {
   }, [location]);
   return (
     <>
-      <RedirectHandler />
-      {/* <ScrollToTop/> */}
+      {/* <RedirectHandler /> */}
       <div className="overflow-x-hidden cursor-default min-h-screen w-full bg-black flex flex-col">
 
           <NavBar />
