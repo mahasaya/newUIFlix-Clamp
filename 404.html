@@ -17,8 +17,8 @@
 
       // Build redirect URL: index.html + ?redirect=originalPath
       const redirectUrl = `${repo}/${encodeURIComponent(path+ search + hash)}`;
-      const decodedPath = decodeURIComponent(redirect);
-      window.location.replace(redirectUrl);
+      const decodedPath = decodeURIComponent(redirectUrl);
+      window.location.replace(decodedPath);
     </script>
   </body>
 </html>
