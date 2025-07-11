@@ -22,13 +22,14 @@ function App() {
   // Redirect handler for GitHub Pages fallback
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+
     const redirect = params.get("redirect");
 
+
     if (redirect) {
-      // Clean the URL
-      window.history.replaceState(null, "", redirect);
-      // Navigate to the real route
-      navigate(redirect, { replace: true });
+      const decodedPath = decodeURIComponent(redirect);
+      window.history.replaceState(null, '', decodedPath); //  now valid
+      navigate(decodedPath, { replace: true });
     }
   }, []);
 
