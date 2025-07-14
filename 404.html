@@ -12,7 +12,7 @@
       // Just capture the full path
       const fullPath = window.location.pathname + window.location.search + window.location.hash;
       // Encode it
-      const redirectUrl = fullPath;
+      const redirectUrl = '/index.html?redirect=' + encodeURIComponent(fullPath);
       // Redirect
       window.location.replace(redirectUrl);
     </script>
