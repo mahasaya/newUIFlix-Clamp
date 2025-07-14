@@ -19,12 +19,8 @@ const useFetchUrl = (setProductImg ,setProductName) => {
           const imgName = data?.[0]?.product_meta?.product_title || "Product Name"
           setProductName(imgName)
           const productImgUrl =
-            data?.[0]?.modules?.image_gallery?.images?.[0]?.img_1000_url;
-          if (productImgUrl) {
-            setProductImg(productImgUrl);
-          } else {
-            setProductImg(fall_back_img);
-          }
+            data?.[0]?.modules?.image_gallery?.images?.[0]?.img_1000_url || fall_back_img
+            setProductImg(productImgUrl)
         })
         .catch((err) =>
           console.warn('Failed to parse t.json fetch response:', err)

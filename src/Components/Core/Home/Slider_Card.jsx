@@ -20,8 +20,10 @@ const Slider_Card = ({ SliderData, width, height }) => {
 
     if (formData.mpn) params.set("mpn", formData.mpn);
     if (formData.ean) params.set("ean", formData.ean);
-
-    navigate(`${SliderData?.tag}?${params.toString()}`);
+    if(params.toString()){
+      navigate(`${SliderData?.tag}?${params.toString()}`);
+    }
+   
   };
 
   return (
