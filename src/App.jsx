@@ -20,20 +20,20 @@ function App() {
   const navigate = useNavigate();
 
   // Redirect handler for GitHub Pages fallback
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+  // useEffect(() => {
+  //   const params = new URLSearchParams(window.location.search);
 
-    const redirect = params.get("redirect");
+  //   const redirect = params.get("redirect");
 
 
-    if (redirect) {
-      const decodedPath = decodeURIComponent(redirect);
-            console.log(decodedPath)
-      window.history.replaceState(null, '', decodedPath); // now valid
+  //   if (redirect) {
+  //     const decodedPath = decodeURIComponent(redirect);
+  //           console.log(decodedPath)
+  //     window.history.replaceState(null, '', decodedPath); // now valid
 
-      navigate(decodedPath, { replace: true });
-    }
-  }, []);
+  //     navigate(decodedPath, { replace: true });
+  //   }
+  // }, []);
 
 
   useEffect(() => {
