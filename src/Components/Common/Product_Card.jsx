@@ -5,8 +5,7 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { CiShop } from "react-icons/ci";
 import CTAButtons from '../Common/CTAButtons';
 
-const Product_Card = ({tag,details}) => {
-
+const Product_Card = ({productName,img,tag,details}) => {
     function viewproduct(){
         console.log("view product clicked")
     }
@@ -20,7 +19,7 @@ const Product_Card = ({tag,details}) => {
             {/* IMAGE */}
         <div className="w-full h-auto flex items-center flix-hs-locator">
             <img
-                src={`${details?.img}`}
+                src={`${img}`}
                 alt="Product"
                 className="max-w-full h-auto object-contain"
             />
@@ -32,12 +31,12 @@ const Product_Card = ({tag,details}) => {
         <div className='flex flex-col justify-center gap-3 md:gap-5'>
 
             <span className='text-[20px] leading-5 md:leading-[24px] font-medium text-[#213038]'>
-                {details?.name}
+                {productName}
             </span>
 
             <ul className='list-disc ml-3 md:ml-5'>
-                {details?.description.map((des,index)=>(
-                    <li className='text-[14px] leading-4 md:leading-[21px] text-[#213038] mt-2.5' key={index}>{des}</li>
+                {[...Array(4)].map((_,index)=>(
+                    <li className='text-[14px] leading-4 md:leading-[21px] text-[#213038] mt-2.5' key={index}>Lorem,  neque deleniti voluptatem nulla, ab quam culpa iste laborum amet modi ipsum!</li>
                 ))}
             </ul>
             <div className='p-2 rounded border border-[#cdd8df] cursor-pointer flex items-start gap-1.5'>
@@ -73,7 +72,7 @@ const Product_Card = ({tag,details}) => {
                 </div>
             </div>
 
-            <div className='flex flex-col gap-4 md:gap-6'>
+            <div className='flex md:items-start items-center flex-col gap-4 md:gap-6'>
                <CTAButtons 
                 text={"Add to basket"}
                 outline={true}

@@ -37,17 +37,15 @@ const NavBar = () => {
   //   const container = containerRef.current;
   //   const slideWidth = window.innerWidth;
 
-    
   //   container.style.transition = "transform 0.5s ease-in-out";
   //   container.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 
-   
   //   if (currentIndex === totalSlides) {
   //     setTimeout(() => {
   //       container.style.transition = "none";
   //       container.style.transform = "translateX(0px)";
   //       setCurrentIndex(0);
-  //     }, 500); 
+  //     }, 500);
   //   }
   // }, [currentIndex, totalSlides]);
 
@@ -76,125 +74,100 @@ const NavBar = () => {
             ))}
           </div>
         </div>
-      </div> */}  
-              <motion.div
-          initial={{ transform: "translateY(-300px)" }}
-          animate={{ transform: "translateY(0)" }}
-          transition={{
-            type: "spring",
-            bounce: 0.25,
-            duration: 0.8, 
-          }}
-        >
-                <div className="flex pt-5 bg-black flex-col">
-        {/* Top Bar - Mobile Friendly */}
-        <div className="flex flex-col gap-5 md:flex-row md:gap-0 w-full py-2.5 justify-between items-center px-4 sm:px-5">
-          <div className="flex items-center justify-between w-full mr-4 md:w-auto flex-1/6">
-            <FlixLogo clickFunc={() => handleClick("/")} />
+      </div> */}
+      <motion.div
+        initial={{ transform: "translateY(-300px)" }}
+        animate={{ transform: "translateY(0)" }}
+        transition={{
+          type: "spring",
+          bounce: 0.25,
+          duration: 0.8,
+        }}
+      >
+        <div className="flex pt-5 bg-black flex-col">
+          {/* Top Bar - Mobile Friendly */}
+          <div className="flex flex-col gap-5 md:flex-row md:gap-0 w-full py-2.5 justify-between items-center px-4 sm:px-5">
+            <div className="flex items-center justify-between w-full mr-4 md:w-auto">
+              <FlixLogo clickFunc={() => handleClick("/")} />
 
-            {/* Mobile Menu Button */}
-            {
-              mobileMenuOpen ? 
-              <button
-                className="md:hidden text-white text-2xl"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <IoClose color="white" size={24}/>
-              </button>
-               :
-            <button
-              className="md:hidden text-white text-2xl"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <BsList />
-            </button>
-            }
-
-          </div>
-
-          <div
-            className={`${
-              mobileMenuOpen ? "flex" : "hidden"
-            } flex-1/2 justify-between md:flex flex-col md:flex-row w-full md:w-auto items-center gap-4 `}
-          >
-            <div>
-              {/* SEARCH-BAR */}
-              {
-                !showDropdowm &&
-                <div
-                  className={`min-w-[380px]  flex justify-between w-[100%] sm:w-[40%] bg-[#41E886] items-center gap-5 
-                    rounded-lg
-                   px-3`}
+              {/* Mobile Menu Button */}
+              {mobileMenuOpen ? (
+                <button
+                  className="md:hidden text-white text-2xl"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  <input
-                    onClick={()=>setShowDropdown(true)}
-                    className={`max-w-[350px] bg-[#41E886] px-2 rounded-3xl text-[black] placeholder-black w-[70%] py-2 appearance-none border-none focus:outline-none`}
-                    type="text"
-                    placeholder="Search for the product"
-                  />
-                  <CiSearch color="black" size={24} style={{ strokeWidth: 0.5 }} />
-                </div>
-              }
+                  <IoClose color="white" size={24} />
+                </button>
+              ) : (
+                <button
+                  className="md:hidden text-white text-2xl"
+                  onClick={() => setMobileMenuOpen(true)}
+                >
+                  <BsList />
+                </button>
+              )}
             </div>
-            
-            <div className="flex gap-8 py-3 md:py-0">
-              <IoPersonSharp
-                onClick={() => handleClick("profile")}
-                className="text-white hover:text-[#41E886] text-xl cursor-pointer"
-              />
-              <BsFillBasketFill
-                onClick={() => handleClick("cart")}
-                className="text-white hover:text-[#41E886] text-xl cursor-pointer"
-              />
+
+            <div
+              className={`${
+                mobileMenuOpen ? "flex" : "hidden"
+              }  justify-between md:flex flex-col md:flex-row w-full md:w-auto items-center gap-4 `}
+            >
+              <div className="flex gap-8 py-3 md:py-0">
+                <IoPersonSharp
+                  onClick={() => handleClick("profile")}
+                  className="text-white hover:text-[#41E886] text-xl cursor-pointer"
+                />
+                <BsFillBasketFill
+                  onClick={() => handleClick("cart")}
+                  className="text-white hover:text-[#41E886] text-xl cursor-pointer"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Banner Navigation */}
+          <div className="hidden md:flex w-full py-4 items-center lg:px-3 px-3 ">
+            <div className="lg:w-[70%] w-full mx-auto flex flex-row gap-4 md:w-[90%] md:gap-0 justify-between items-center">
+              {bannerNav.map((data, index) => (
+                <span
+                  key={index}
+                  className="uppercase hover:text-[#41E886]  text-white font-[700] text-sm lg:text-base cursor-pointer hover:opacity-75 transition-opacity"
+                >
+                  {data}
+                </span>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Desktop Banner Navigation */}
-        <div className="hidden md:flex w-full py-4 items-center px-5">
-          <div className="lg:w-[70%] w-full mx-auto flex flex-row gap-4 md:gap-0 justify-between items-center">
-            {bannerNav.map((data, index) => (
-              <span
-                key={index}
-                onClick={() => handleClick(`/${data.split(" ").join("-")}`)}
-                className="uppercase hover:text-[#41E886]  text-white font-[700] text-sm lg:text-base cursor-pointer hover:opacity-75 transition-opacity"
-              >
-                {data}
-              </span>
-            ))}
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-[#2d2d2d] w-full py-3 px-5">
+            <div className="flex flex-col gap-4">
+              {bannerNav.map((data, index) => (
+                <span
+                  key={index}
+                  onClick={() => handleClick(`/${data.split(" ").join("-")}`)}
+                  className="uppercase text-white font-[700] text-sm cursor-pointer py-1 -b"
+                >
+                  {data}
+                </span>
+              ))}
+            </div>
           </div>
+        )}
+
+        {/* Breadcrumb */}
+        <div className="w-full bg-black border-t border-b border-gray-600 py-2 flex items-center justify-start px-4 md:px-10 lg:px-20">
+          <span className="text-xs  font-medium">
+            <Link to="/" className="text-white hover:text-[#41E886]">
+              Home
+            </Link>{" "}
+            <span className="text-white hover:text-[#41E886] capitalize">{` ${indexes}`}</span>
+          </span>
         </div>
-      </div>
-
-      {/* Mobile Menu Dropdown */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-[#2d2d2d] w-full py-3 px-5">
-          <div className="flex flex-col gap-4">
-            {bannerNav.map((data, index) => (
-              <span
-                key={index}
-                onClick={() => handleClick(`/${data.split(" ").join("-")}`)}
-                className="uppercase text-white font-[700] text-sm cursor-pointer py-1 -b"
-              >
-                {data}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Breadcrumb */}
-      <div className="w-full bg-black border-t border-b border-gray-600 py-2 flex items-center justify-start px-4 md:px-10 lg:px-20">
-        <span className="text-xs  font-medium"><Link to="/" className="text-white hover:text-[#41E886]">Home</Link> <span className="text-white hover:text-[#41E886] capitalize">{` ${indexes}`}</span></span>
-      </div>
-          </motion.div>         
-
-
-                {
-showDropdowm &&
-          <SearchBar showDropdowm={showDropdowm} setShowDropdown={setShowDropdown} searchInput={searchInput} setSearchInput={setSearchInput} mobileOpen={mobileMenuOpen} />
-          }
-          
+      </motion.div>
     </>
   );
 };

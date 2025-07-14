@@ -15,7 +15,7 @@ const store = configureStore({
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <BrowserRouter basename="/newUIFlix-Clamp">
+    <BrowserRouter >
       <App />
     </BrowserRouter>
   </Provider>
