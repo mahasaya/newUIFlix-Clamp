@@ -4,7 +4,7 @@ import { ProductDetails } from '../../assets/dummyData';
 import { CiDeliveryTruck } from "react-icons/ci";
 import { CiShop } from "react-icons/ci";
 import CTAButtons from '../Common/CTAButtons';
-
+import fall_back_img from "../../assets/images/fall_back_product_img.jpg";
 const Product_Card = ({productName,img,tag,details}) => {
     function viewproduct(){
         console.log("view product clicked")
@@ -12,6 +12,7 @@ const Product_Card = ({productName,img,tag,details}) => {
     function addTobasket(){
         console.log("add to baaslet clicked")
     }
+    const ProdImg = img || fall_back_img
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 w-[90%] h-auto mx-auto gap-5 my-6 py-6 px-10 bg-white rounded-xl'>
         {/* IMAGE-CONTIANER */}
@@ -19,7 +20,7 @@ const Product_Card = ({productName,img,tag,details}) => {
             {/* IMAGE */}
         <div className="w-full h-auto flex items-center flix-hs-locator">
             <img
-                src={`${img}`}
+                src={`${ProdImg}`}
                 alt="Product"
                 className="max-w-full h-auto object-contain"
             />

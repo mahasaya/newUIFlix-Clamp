@@ -109,7 +109,7 @@ export const SliderProductData = [
   {
     img: imageEleven,
     label: "console gaming",
-    tag: "/tv-&-entertainment/console-gaming",
+    tag: "tv-&-entertainment/console-gaming",
   },
   {
     img: imageTwelve,
@@ -122,6 +122,7 @@ export const ProductRecommendation = [
   {
     id: 1,
     name: "Product name/model, title",
+    tag: "small-appliances/headphones",
     img: productImg,
     price: "£199.00",
     save: "50.00",
@@ -129,6 +130,7 @@ export const ProductRecommendation = [
   {
     id: 2,
     name: "Product name/model, title",
+     tag: "kitchen-appliances/fridge-freezers",
     img: productImg,
     price: "£299.00",
     save: "30.00",
@@ -136,6 +138,7 @@ export const ProductRecommendation = [
   {
     id: 3,
     name: "Product name/model, title",
+     tag: "tv-&-entertainment/console-gaming",
     img: productImg,
     price: "£499.00",
     save: "40.00",
@@ -143,6 +146,7 @@ export const ProductRecommendation = [
   {
     id: 4,
     name: "Product name/model, title",
+     tag: "small-appliances/digital-cameras",
     img: productImg,
     price: "£699.00",
     save: "50.00",
@@ -150,18 +154,21 @@ export const ProductRecommendation = [
   {
     id: 5,
     name: "Product name/model, title",
+     tag: "kitchen-appliances/washing-machines",
     img: productImg,
     price: "£699.00",
   },
   {
     id: 6,
     name: "Product name/model, title",
+    tag: "phones/phones",
     img: productImg,
     price: "£699.00",
   },
   {
     id: 7,
     name: "Product name/model, title",
+    tag: "tv-&-entertainment/tv",
     img: productImg,
     price: "£699.00",
   },

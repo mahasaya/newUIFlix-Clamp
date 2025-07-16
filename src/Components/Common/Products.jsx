@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams, useSearchParams, useLocation, useNavigationType } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import {
+  useParams,
+  useSearchParams,
+  useLocation,
+} from "react-router-dom";
 import { ProductDetails, ProductRecommendation } from "../../assets/dummyData";
 import Product_Card from "../Common/Product_Card";
 import SliderContainer from "../Core/Home/SliderContainer";
@@ -14,61 +16,24 @@ const Products = () => {
   const { tag } = useParams();
   const [searchParams] = useSearchParams();
   const location = useLocation();
-  const navigationType = useNavigationType();
-
   const flixInpageRef = useRef(null);
   const miniRef = useRef(null);
-
+const [embedKey, setEmbedKey] = useState(0);
   const [showFlixDiv, setShowFlixDiv] = useState(false);
   const [productImg, setProductImg] = useState();
   const [prod_Name, setProdName] = useState();
   const [flixHeight, setFlixHeight] = useState("");
   const [maxHeight, setMaxHeight] = useState("350px");
 
-  const global_variable = useSelector((state) => state.flixParams.global_variable);
-
   const distributor = searchParams.get("distId");
 
   const focusDiv = () => {
     miniRef.current?.focus();
     miniRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-    console.log("this ran");
   };
-
-  const content = distributor === "2298" ? (
-    <div
-      id="flix-embed-block"
-      ref={miniRef}
-      style={{ outline: "none" }}
-      className="flix_retailer_width_2298"
-    >
-      <div data-flix-embed-meta="review_stars"></div>
-      <div data-flix-embed-meta="product_info"></div>
-      <div data-flix-embed-meta="main_video"></div>
-      <div data-flix-embed-meta="videos"></div>
-      <div data-flix-embed-meta="360view"></div>
-      <div data-flix-embed-meta="images"></div>
-      <div data-flix-embed-meta="features"></div>
-      <div data-flix-embed-meta="specifications"></div>
-      <div data-flix-embed-meta="documents"></div>
-      <div data-flix-embed-meta="reviews"></div>
-      <div data-flix-embed-meta="complimentary"></div>
-    </div>
-  ) : (
-    <>
-      <div id="flix-minisite"></div>
-      <div
-        ref={miniRef}
-        style={{ outline: "none" }}
-        tabIndex={-1}
-        id="flix-inpage"
-      ></div>
-    </>
-  );
-
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  setEmbedKey(prev => prev + 1);
+}, [location.search]); 
 
   useEffect(() => {
     if (showFlixDiv) {
@@ -82,12 +47,65 @@ const Products = () => {
   }, [showFlixDiv, flixHeight]);
 
   useEffect(() => {
-    const language = searchParams.get("iso");
-    const product_mpn = searchParams.get("mpn");
-    const product_ean = searchParams.get("ean");
-    const product_brand = searchParams.get("brand");
-    const live = searchParams.get("live");
-    if (flixInpageRef.current && live && distributor && language && (product_mpn || product_ean)) {
+    const params = new URLSearchParams(location.search);
+    const language = params.get("iso");
+    const product_mpn = params.get("mpn");
+    const product_ean = params.get("ean");
+    const product_brand = params.get("brand");
+    const live = params.get("live");
+    const distributor = params.get("distId");
+
+    // Reset previous Flix script
+    if (typeof window.flixJsCallbacks?.reset === "function") {
+      window.flixJsCallbacks.reset();
+    }
+    document.getElementById("flix-script")?.remove();
+
+    setProductImg(undefined);
+    setProdName(undefined);
+    // if(!flixInpageRef.current.children){
+    //   flixInpageRef.current.appendChild(
+    //     `
+    //       { distributor === "2298" ? (
+    //         <div
+    //           id="flix-embed-block"
+    //           ref={miniRef}
+    //           style={{ outline: "none" }}
+    //           className="flix_retailer_width_2298"
+    //         >
+    //           <div data-flix-embed-meta="review_stars"></div>
+    //           <div data-flix-embed-meta="product_info"></div>
+    //           <div data-flix-embed-meta="main_video"></div>
+    //           <div data-flix-embed-meta="videos"></div>
+    //           <div data-flix-embed-meta="360view"></div>
+    //           <div data-flix-embed-meta="images"></div>
+    //           <div data-flix-embed-meta="features"></div>
+    //           <div data-flix-embed-meta="specifications"></div>
+    //           <div data-flix-embed-meta="documents"></div>
+    //           <div data-flix-embed-meta="reviews"></div>
+    //           <div data-flix-embed-meta="complimentary"></div>
+    //         </div>
+    //       ) : (
+    //         <>
+    //           <div id="flix-minisite"></div>
+    //           <div
+    //             ref={miniRef}
+    //             style={{ outline: "none" }}
+    //             tabIndex={-1}
+    //             id="flix-inpage"
+    //           ></div>
+    //         </>
+    //       )}
+    //     `
+    //   )
+    // }
+    if (
+      miniRef.current &&
+      live &&
+      distributor &&
+      language &&
+      (product_mpn || product_ean)
+    ) {
       fliXScript({
         distributor,
         language,
@@ -96,31 +114,35 @@ const Products = () => {
         product_brand,
         live,
       });
-      
     } else {
-      console.warn("Missing necessary query params for FlixScript");
+      console.warn("Missing necessary query params for FlixScript", {
+        distributor,
+        language,
+        live,
+        product_mpn,
+        product_ean,
+        miniRef: miniRef.current,
+      });
     }
 
+    // Re-fetch product image & name
     useFetchUrl(setProductImg, setProdName);
 
-    return () => {
-      if (typeof window.flixJsCallbacks?.reset === "function") {
-        window.flixJsCallbacks.reset();
-      }
+    // Reset UI states
+    setShowFlixDiv(false);
+    setFlixHeight("");
+    setMaxHeight("350px");
 
-      const existingScript = document.getElementById("flix-script");
-      if (existingScript) existingScript.remove();
+    // Scroll to top
+    window.scrollTo(0, 0);
 
-      setProductImg(null);
-    };
-  }, [searchParams]);
+  }, [location.pathname, location.search,miniRef.current]);
 
   useEffect(() => {
     if (miniRef) {
       const observer = new MutationObserver(() => {
         const secondChild = flixInpageRef.current?.children?.[1];
         if (secondChild) {
-          console.log(secondChild.offsetHeight);
           setFlixHeight(secondChild.offsetHeight);
         }
       });
@@ -133,25 +155,22 @@ const Products = () => {
 
         const secondChild = flixInpageRef.current.children[1];
         if (secondChild) {
-          console.log(secondChild.offsetHeight);
           setFlixHeight(secondChild.offsetHeight);
         }
       }
 
       return () => observer.disconnect();
     }
-  }, [miniRef?.current?.offsetHeight]);
+  }, [tag]);
 
   const product = ProductDetails.find((e) => e?.tag === tag);
-
-  // if (!productImg?.length) {
+  // if (!miniRef.current) {
   //   return (
   //     <div className="w-full text-white h-screen flex items-center justify-center">
   //       <div className="spinner"></div>
   //     </div>
   //   );
   // }
-
   return (
     <div className="w-full h-full bg-[#f2f2f2]">
       {product?.details.map((data, index) => (
@@ -215,17 +234,50 @@ const Products = () => {
         </div>
 
         <div
+          key={embedKey} 
           className="transition-all duration-600 ease-in-out overflow-hidden"
           style={{ maxHeight }}
           ref={flixInpageRef}
           id="flix-Div"
         >
-          {content}
+          { distributor === "2298" ? (
+            <div
+              id="flix-embed-block"
+              ref={miniRef}
+              style={{ outline: "none" }}
+              className="flix_retailer_width_2298"
+            >
+              <div data-flix-embed-meta="review_stars"></div>
+              <div data-flix-embed-meta="product_info"></div>
+              <div data-flix-embed-meta="main_video"></div>
+              <div data-flix-embed-meta="videos"></div>
+              <div data-flix-embed-meta="360view"></div>
+              <div data-flix-embed-meta="images"></div>
+              <div data-flix-embed-meta="features"></div>
+              <div data-flix-embed-meta="specifications"></div>
+              <div data-flix-embed-meta="documents"></div>
+              <div data-flix-embed-meta="reviews"></div>
+              <div data-flix-embed-meta="complimentary"></div>
+            </div>
+          ) : (
+            <>
+              <div id="flix-minisite"></div>
+              <div
+                ref={miniRef}
+                style={{ outline: "none" }}
+                tabIndex={-1}
+                id="flix-inpage"
+              ></div>
+            </>
+          )}
         </div>
       </div>
 
       {/* PRODUCT RECOMMENDATION SLIDER */}
-      <SliderContainer SliderData={ProductRecommendation} Card={Product_Recommendation_Card} />
+      <SliderContainer
+        SliderData={ProductRecommendation}
+        Card={Product_Recommendation_Card}
+      />
     </div>
   );
 };

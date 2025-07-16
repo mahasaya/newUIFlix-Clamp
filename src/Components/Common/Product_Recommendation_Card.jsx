@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import FlixParamsModal from "./flixParamsModal";
 
 const Product_Recommendation_Card = ({ SliderData, width, height }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-
+  const {tag} = useParams()
   const handleClose = () => setIsOpen(false);
 
   const handleModalSubmit = (formData) => {
@@ -17,7 +17,7 @@ const Product_Recommendation_Card = ({ SliderData, width, height }) => {
 
     if (formData?.mpn) params.set("mpn", formData?.mpn);
     if (formData?.ean) params.set("ean", formData?.ean);
-    navigate(`?${params.toString()} `);
+    navigate(`/${SliderData?.tag}?${params.toString()} `);
   };
 
   return (
