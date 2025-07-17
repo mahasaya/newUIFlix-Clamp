@@ -9,13 +9,8 @@
       Loading...
     </p>
     <script>
-      // Just capture the full path
-      const fullPath = window.location.pathname+window.location.search+window.location.hash;
-      // Encode it
-      const redirectUrl = '/index.html?redirect='+encodeURIComponent(fullPath);
-      console.log(redirectUrl)
-      // Redirect
-      window.location.replace(redirectUrl);
+      const fullPath = window.location.pathname + window.location.search + window.location.hash;
+      window.location.replace(fullPath); // Just go to the proper route
     </script>
   </body>
 </html>

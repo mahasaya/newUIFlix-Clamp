@@ -28,9 +28,7 @@ function App() {
 
     if (redirect) {
       const decodedPath = decodeURIComponent(redirect);
-            console.log(decodedPath)
       window.history.replaceState(null, '', decodedPath); // now valid
-
       navigate(decodedPath, { replace: true });
     }
   }, []);

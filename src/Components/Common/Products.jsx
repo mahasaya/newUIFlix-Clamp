@@ -112,8 +112,6 @@ useEffect(() => {
     }
   }
 
-  console.log(miniRef.current);
-
   if (
     miniRef.current &&
     live &&

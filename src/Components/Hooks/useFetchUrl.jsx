@@ -7,7 +7,6 @@ const useFetchUrl = (setProductImg ,setProductName) => {
     const url = typeof args[0] === 'string' ? args[0] : args[0]?.url;
 
     if (url && (url.includes('t.json')||url.includes('embedv2-t.json')||url.includes('sis.json'))) {
-      console.log(`'t.json' requested via fetch:`, url);
       const response = await originalFetch(...args);
 
       
@@ -15,7 +14,6 @@ const useFetchUrl = (setProductImg ,setProductName) => {
       clonedResponse
         .json()
         .then((data) => {
-          console.log('t.json fetch response:', data);
           const imgName = data?.[0]?.product_meta?.product_title || "Product Name"
           setProductName(imgName)
           const productImgUrl =
