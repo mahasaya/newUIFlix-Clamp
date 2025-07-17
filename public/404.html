@@ -9,8 +9,12 @@
       Loading...
     </p>
     <script>
-      const fullPath = window.location.pathname + window.location.search + window.location.hash;
-      window.location.replace(fullPath); // Just go to the proper route
+      const redirectPath =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
+      const newUrl = "/?" + "redirect=" + encodeURIComponent(redirectPath);
+      window.location.replace(newUrl);
     </script>
   </body>
 </html>
