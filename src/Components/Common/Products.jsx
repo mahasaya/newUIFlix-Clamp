@@ -18,7 +18,7 @@ const Products = () => {
   const location = useLocation();
   const flixInpageRef = useRef(null);
   const miniRef = useRef(null);
-const [embedKey, setEmbedKey] = useState(0);
+// const [embedKey, setEmbedKey] = useState(0);
   const [showFlixDiv, setShowFlixDiv] = useState(false);
   const [productImg, setProductImg] = useState();
   const [prod_Name, setProdName] = useState();
@@ -31,9 +31,10 @@ const [embedKey, setEmbedKey] = useState(0);
     miniRef.current?.focus();
     miniRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
-  useEffect(() => {
-  setEmbedKey(prev => prev + 1);
-}, [location.search]); 
+//   useEffect(() => {
+//     console.log("this ran simple key")
+//   setEmbedKey(prev => prev + 1);
+// }, [location.search]); 
 
   useEffect(() => {
     if (showFlixDiv) {
@@ -46,97 +47,111 @@ const [embedKey, setEmbedKey] = useState(0);
     }
   }, [showFlixDiv, flixHeight]);
 
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const language = params.get("iso");
-    const product_mpn = params.get("mpn");
-    const product_ean = params.get("ean");
-    const product_brand = params.get("brand");
-    const live = params.get("live");
-    const distributor = params.get("distId");
+useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  const language = params.get("iso");
+  const product_mpn = params.get("mpn");
+  const product_ean = params.get("ean");
+  const product_brand = params.get("brand");
+  const live = params.get("live");
+  const distributor = params.get("distId");
 
-    // Reset previous Flix script
-    if (typeof window.flixJsCallbacks?.reset === "function") {
-      window.flixJsCallbacks.reset();
-    }
-    document.getElementById("flix-script")?.remove();
+  // Reset previous Flix script
+  if (typeof window.flixJsCallbacks?.reset === "function") {
+    window.flixJsCallbacks.reset();
+  }
+  document.getElementById("flix-script")?.remove();
 
-    setProductImg(undefined);
-    setProdName(undefined);
-    // if(!flixInpageRef.current.children){
-    //   flixInpageRef.current.appendChild(
-    //     `
-    //       { distributor === "2298" ? (
-    //         <div
-    //           id="flix-embed-block"
-    //           ref={miniRef}
-    //           style={{ outline: "none" }}
-    //           className="flix_retailer_width_2298"
-    //         >
-    //           <div data-flix-embed-meta="review_stars"></div>
-    //           <div data-flix-embed-meta="product_info"></div>
-    //           <div data-flix-embed-meta="main_video"></div>
-    //           <div data-flix-embed-meta="videos"></div>
-    //           <div data-flix-embed-meta="360view"></div>
-    //           <div data-flix-embed-meta="images"></div>
-    //           <div data-flix-embed-meta="features"></div>
-    //           <div data-flix-embed-meta="specifications"></div>
-    //           <div data-flix-embed-meta="documents"></div>
-    //           <div data-flix-embed-meta="reviews"></div>
-    //           <div data-flix-embed-meta="complimentary"></div>
-    //         </div>
-    //       ) : (
-    //         <>
-    //           <div id="flix-minisite"></div>
-    //           <div
-    //             ref={miniRef}
-    //             style={{ outline: "none" }}
-    //             tabIndex={-1}
-    //             id="flix-inpage"
-    //           ></div>
-    //         </>
-    //       )}
-    //     `
-    //   )
-    // }
-    if (
-      miniRef.current &&
-      live &&
-      distributor &&
-      language &&
-      (product_mpn || product_ean)
-    ) {
-      fliXScript({
-        distributor,
-        language,
-        product_mpn,
-        product_ean,
-        product_brand,
-        live,
+  setProductImg(undefined);
+  setProdName(undefined);
+
+  // Clear previous children
+  if (flixInpageRef.current) {
+    flixInpageRef.current.innerHTML = "";
+  }
+
+  if (flixInpageRef.current && !flixInpageRef.current.children.length) {
+    if (distributor === "2298") {
+      const blockDiv = document.createElement("div");
+      blockDiv.id = "flix-embed-block";
+      blockDiv.style.outline = "none";
+      blockDiv.className = "flix_retailer_width_2298";
+      if (miniRef.current) blockDiv.appendChild(miniRef.current);
+
+      [
+        "review_stars",
+        "product_info",
+        "main_video",
+        "videos",
+        "360view",
+        "images",
+        "features",
+        "specifications",
+        "documents",
+        "reviews",
+        "complimentary",
+      ].forEach((meta) => {
+        const div = document.createElement("div");
+        div.setAttribute("data-flix-embed-meta", meta);
+        blockDiv.appendChild(div);
       });
+
+      flixInpageRef.current.appendChild(blockDiv);
     } else {
-      console.warn("Missing necessary query params for FlixScript", {
-        distributor,
-        language,
-        live,
-        product_mpn,
-        product_ean,
-        miniRef: miniRef.current,
-      });
+      const miniSiteDiv = document.createElement("div");
+      miniSiteDiv.id = "flix-minisite";
+
+      const inpageDiv = document.createElement("div");
+      inpageDiv.id = "flix-inpage";
+      inpageDiv.style.outline = "none";
+      inpageDiv.tabIndex = -1;
+      if (miniRef.current) inpageDiv.appendChild(miniRef.current);
+
+      flixInpageRef.current.appendChild(miniSiteDiv);
+      flixInpageRef.current.appendChild(inpageDiv);
     }
+  }
 
-    // Re-fetch product image & name
-    useFetchUrl(setProductImg, setProdName);
+  console.log(miniRef.current);
 
-    // Reset UI states
-    setShowFlixDiv(false);
-    setFlixHeight("");
-    setMaxHeight("350px");
+  if (
+    miniRef.current &&
+    live &&
+    distributor &&
+    language &&
+    (product_mpn || product_ean)
+  ) {
+    fliXScript({
+      distributor,
+      language,
+      product_mpn,
+      product_ean,
+      product_brand,
+      live,
+    });
+  } else {
+    console.warn("Missing necessary query params for FlixScript", {
+      distributor,
+      language,
+      live,
+      product_mpn,
+      product_ean,
+      miniRef: miniRef.current,
+    });
+  }
 
-    // Scroll to top
-    window.scrollTo(0, 0);
+  // Re-fetch product image & name
+  useFetchUrl(setProductImg, setProdName);
 
-  }, [location.pathname, location.search,miniRef.current]);
+  // Reset UI states
+  setShowFlixDiv(false);
+  setFlixHeight("");
+  setMaxHeight("350px");
+
+  // Scroll to top
+  window.scrollTo(0, 0);
+}, [location.pathname, location.search]);
+
 
   useEffect(() => {
     if (miniRef) {
@@ -234,7 +249,7 @@ const [embedKey, setEmbedKey] = useState(0);
         </div>
 
         <div
-          key={embedKey} 
+          // key={embedKey} 
           className="transition-all duration-600 ease-in-out overflow-hidden"
           style={{ maxHeight }}
           ref={flixInpageRef}
