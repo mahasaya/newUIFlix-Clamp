@@ -15,7 +15,7 @@ const store = configureStore({
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <BrowserRouter basename="react/react-clamp">
+    <BrowserRouter >
       <App />
     </BrowserRouter>
   </Provider>
